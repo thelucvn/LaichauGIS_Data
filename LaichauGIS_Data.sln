@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaichauGIS_Data", "LaichauG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaichauGIS_Data.Tests", "LaichauGIS_Data.Tests\LaichauGIS_Data.Tests.csproj", "{141B8F8E-453D-4719-A107-9942A03017FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{5DE91983-FE36-49F1-9067-8D4DDC7AF062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{141B8F8E-453D-4719-A107-9942A03017FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{141B8F8E-453D-4719-A107-9942A03017FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{141B8F8E-453D-4719-A107-9942A03017FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
