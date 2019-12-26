@@ -131,6 +131,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\LaichauDB.mdf" />
+    <Content Include="App_Data\LaichauDB_log.ldf">
+      <DependentUpon>LaichauDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Assets\admin\css\sb-admin-2.css" />
     <Content Include="Assets\admin\css\sb-admin-2.min.css" />
     <Content Include="Assets\admin\img\undraw_posting_photo.svg" />
@@ -1942,7 +1946,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -1963,6 +1966,9 @@
       <Project>{5de91983-fe36-49f1-9067-8d4ddc7af062}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
