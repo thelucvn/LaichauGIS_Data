@@ -5,7 +5,7 @@ namespace Models.Framework
     public partial class LaichauDBContext : DbContext
     {
         public LaichauDBContext()
-            : base("LaichauDBContext")
+            : base("LaichauDB")
         {
         }
 
