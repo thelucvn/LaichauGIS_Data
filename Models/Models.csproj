@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,15 +53,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\DataType.cs" />
+    <Compile Include="Framework\District.cs" />
+    <Compile Include="Framework\LaichauDBContext.cs" />
+    <Compile Include="Framework\MeasurementData.cs" />
+    <Compile Include="Framework\MeasurementLocation.cs" />
+    <Compile Include="Framework\Message.cs" />
+    <Compile Include="Framework\MessageType.cs" />
+    <Compile Include="Framework\Photo.cs" />
+    <Compile Include="Framework\Role.cs" />
+    <Compile Include="Framework\sysdiagram.cs" />
+    <Compile Include="Framework\UserAccount.cs" />
+    <Compile Include="Framework\Ward.cs" />
+    <Compile Include="Framework\WarningSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAccountModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
