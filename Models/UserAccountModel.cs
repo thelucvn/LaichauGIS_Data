@@ -15,14 +15,14 @@ namespace Models
         {
             context = new LaichauDBContext();
         }
-        public bool Login(string loginName,string loginPassword)
+        public int Login(string loginName,string loginPassword)
         {
             object[] sqlParams = new SqlParameter[]
             {
                 new SqlParameter("@LoginName",loginName),
                 new SqlParameter("@LoginPassword",loginPassword)
             };
-            var res = context.Database.SqlQuery<bool>("sp_User_Login @LoginName,@LoginPassword", sqlParams).SingleOrDefault();
+            var res = context.Database.SqlQuery<int>("sp_User_Login @LoginName,@LoginPassword", sqlParams).SingleOrDefault();
             return res;
         }
 

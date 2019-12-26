@@ -22,7 +22,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         public ActionResult Index(LoginModel model)
         {
             var result = new UserAccountModel().Login(model.LoginName, model.LoginPassword);
-            if (result && ModelState.IsValid)
+            if (result==1 && ModelState.IsValid)
             {
                 SessionHelper.SetSession(new UserSession() { LoginName = model.LoginName });
                 return RedirectToAction("Index", "AdminHome");
