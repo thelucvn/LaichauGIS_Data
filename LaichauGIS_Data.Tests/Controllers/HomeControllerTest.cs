@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using LaichauGIS_Data.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LaichauGIS_Data;
-using LaichauGIS_Data.Controllers;
+using System.Web.Mvc;
 
 namespace LaichauGIS_Data.Tests.Controllers
 {

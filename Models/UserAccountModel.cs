@@ -1,10 +1,6 @@
 ﻿using Models.Framework;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
@@ -15,7 +11,7 @@ namespace Models
         {
             context = new LaichauDBContext();
         }
-        public int Login(string loginName,string loginPassword)
+        public int Login(string loginName, string loginPassword)
         {
             object[] sqlParams = new SqlParameter[]
             {
