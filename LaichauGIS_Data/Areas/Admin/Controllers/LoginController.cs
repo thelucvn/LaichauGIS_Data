@@ -18,14 +18,14 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         public ActionResult Index(LoginModel model)
         {
             var result = new UserAccountModel().Login(model.LoginName, model.LoginPassword);
-            if (result == 1 && ModelState.IsValid)
+            if (result && ModelState.IsValid)
             {
                 SessionHelper.SetSession(new UserSession() { LoginName = model.LoginName });
                 return RedirectToAction("Index", "AdminHome");
             }
             else
             {
-                ModelState.AddModelError("", "Ten dang nhap hoac mat khau khong dung!");
+                ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng !");
             }
             return View(model);
         }

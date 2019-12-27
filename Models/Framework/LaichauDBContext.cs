@@ -1,11 +1,14 @@
 namespace Models.Framework
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public partial class LaichauDBContext : DbContext
     {
         public LaichauDBContext()
-            : base("LaichauDB")
+            : base("name=LaichauDBConnection")
         {
         }
 
@@ -121,10 +124,6 @@ namespace Models.Framework
                 .HasMany(e => e.MeasurementLocations)
                 .WithRequired(e => e.Ward)
                 .WillCascadeOnDelete(false);
-        }
-        public void FixEfProviderServicesProblem()
-        {
-            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     }
 }
