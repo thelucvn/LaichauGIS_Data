@@ -2,6 +2,7 @@
 using LaichauGIS_Data.Areas.Admin.Models;
 using Models;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
@@ -17,10 +18,11 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
-            var result = new UserAccountModel().Login(model.LoginName, model.LoginPassword);
-            if (result && ModelState.IsValid)
+           // var result = new UserAccountModel().Login(model.LoginName, model.LoginPassword);
+            if (Membership.ValidateUser(model.LoginName,model.LoginPassword) && ModelState.IsValid)
             {
-                SessionHelper.SetSession(new UserSession() { LoginName = model.LoginName });
+                //SessionHelper.SetSession(new UserSession() { LoginName = model.LoginName });
+                FormsAuthentication.SetAuthCookie(model.LoginName, model.RememberMe);
                 return RedirectToAction("Index", "AdminHome");
             }
             else
@@ -28,6 +30,11 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng !");
             }
             return View(model);
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
         }
     }
 }
