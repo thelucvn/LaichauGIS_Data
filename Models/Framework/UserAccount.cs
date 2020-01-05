@@ -1,7 +1,8 @@
-namespace Models.Framework
+﻿namespace Models.Framework
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -24,35 +25,50 @@ namespace Models.Framework
         public int userID { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Họ và Tên")]
+        [Required(ErrorMessage ="Bạn chưa nhập Họ tên")]
         public string userName { get; set; }
 
+        [DisplayName("Phân loại người dùng")]
         public int roleID { get; set; }
 
-        [Required]
         [StringLength(50)]
+        [DisplayName("Tên đăng nhập")]
+        [Required(ErrorMessage = "Bạn chưa nhập tên đăng nhập")]
         public string loginName { get; set; }
 
-        [Required]
+        
         [StringLength(20)]
+        [DisplayName("Mật khẩu")]
+        [Required(ErrorMessage = "Bạn chưa nhập mật khẩu")]
         public string loginPassword { get; set; }
 
+        [DisplayName("Ngày sinh")]
         public DateTime? birthDate { get; set; }
 
         [StringLength(20)]
+        [DisplayName("Số điện thoại")]
+        [Required(ErrorMessage ="Bạn chưa nhập số điện thoại")]
         public string phoneNumber { get; set; }
 
         [StringLength(20)]
+        [DisplayName("Mã thẻ căn cước")]
         public string userPrivateNumber { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Địa chỉ Email")]
+        [Required(ErrorMessage ="Bạn chưa nhập Email")]
         public string emailAddress { get; set; }
 
         [StringLength(200)]
+        [DisplayName("Địa chỉ cư trú")]
         public string address { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Ảnh chân dung")]
         public string userPhoto { get; set; }
 
+        [DisplayName("Trạng thái hoạt động")]
         public int userStatus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

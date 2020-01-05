@@ -18,8 +18,9 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
+
            // var result = new UserAccountModel().Login(model.LoginName, model.LoginPassword);
-            if (Membership.ValidateUser(model.LoginName,model.LoginPassword) && ModelState.IsValid)
+            if (model.LoginName!=null && model.LoginPassword!=null && Membership.ValidateUser(model.LoginName,model.LoginPassword) && ModelState.IsValid)
             {
                 //SessionHelper.SetSession(new UserSession() { LoginName = model.LoginName });
                 FormsAuthentication.SetAuthCookie(model.LoginName, model.RememberMe);
@@ -36,5 +37,6 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
         }
+        
     }
 }

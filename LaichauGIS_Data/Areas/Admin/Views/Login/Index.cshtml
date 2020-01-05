@@ -42,42 +42,35 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Xin chào!</h1>
                                     </div>
                                     @using (Html.BeginForm())
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.ValidationSummary(true,null,new { @class="alert alert-danger"})
                                         <div class="form-group">
-                                            @Html.TextBoxFor(model=>model.LoginName,new { @class="form-control form-control-user",@placeholder="Enter Login Name...",@autofocus="autofocus"})
+                                            @Html.TextBoxFor(model=>model.LoginName,new { @class="form-control form-control-user",@placeholder="Tên đăng nhập...",@autofocus="autofocus"})
                                            
                                         </div>
                                         <div class="form-group">
-                                            @Html.TextBoxFor(model => model.LoginPassword, new { @class = "form-control form-control-user", @placeholder = "Enter Login Password...", @type = "password" })
+                                            @Html.TextBoxFor(model => model.LoginPassword, new { @class = "form-control form-control-user", @placeholder = "Mật khẩu...", @type = "password" })
                                   
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 @Html.CheckBoxFor(model=>model.RememberMe)
-                                                Remember Me
+                                                Ghi nhớ tài khoản
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Đăng nhập</button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
-                                    }
-                                 
-                                    <hr>
+                                        }               
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <!--<a class="small" href="register.html">Create an Account!</a>-->
+                                        <span class="small">@Html.ActionLink("Tạo tài khoản mới!", "Create", "UserAccount")</span> 
                                     </div>
                                 </div>
                             </div>
