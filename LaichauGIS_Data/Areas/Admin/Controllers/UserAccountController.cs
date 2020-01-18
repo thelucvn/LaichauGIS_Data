@@ -17,7 +17,12 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             var model = iplUserAccount.ListAll();
             return View(model);
         }
-
+        public ActionResult ManageProvider()
+        {
+            var iplUserAccount = new UserAccountModel();
+            var model = iplUserAccount.ListProvider();
+            return View(model);
+        }
         // GET: Admin/UserAccount/Details/5
         public ActionResult Details(int id)
         {

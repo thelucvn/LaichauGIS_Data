@@ -38,6 +38,11 @@ namespace Models
             var list = context.Database.SqlQuery<UserAccount>("sp_UserAccount_ListAll").ToList();
             return list;
         }
+        public List<UserAccount> ListProvider()
+        {
+            var list = context.Database.SqlQuery<UserAccount>("sp_UserAccount_ListProvider").ToList();
+            return list;
+        }
 
     }
 }
