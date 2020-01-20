@@ -17,6 +17,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             var model = iplUserAccount.ListAll();
             return View(model);
         }
+        [HttpGet]
         public ActionResult ManageProvider()
         {
             var iplUserAccount = new UserAccountModel();
@@ -68,17 +69,28 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/UserAccount/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            UserAccountModel model = new UserAccountModel();
+            UserAccount userEntity = model.getUserAccountByID(id);
+            return View(userEntity);
         }
 
         // POST: Admin/UserAccount/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, UserAccount collection)
         {
             try
             {
                 // TODO: Add update logic here
-
+                if (ModelState.IsValid)
+                {
+                    UserAccountModel model = new UserAccountModel();
+                    bool res = model.UpdateUserAccount(collection);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật tài khoản không thành công!");
+                    return RedirectToAction("Edit",id);
+                }
                 return RedirectToAction("Index");
             }
             catch

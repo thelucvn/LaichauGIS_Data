@@ -20,7 +20,8 @@
             Photos = new HashSet<Photo>();
             WarningSettings = new HashSet<WarningSetting>();
         }
-
+        [DisplayName("Phân loại")]
+        public string roleName { get; set; }
         [Key]
         public int userID { get; set; }
 

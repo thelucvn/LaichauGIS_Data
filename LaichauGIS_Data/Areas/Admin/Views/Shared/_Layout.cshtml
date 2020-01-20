@@ -69,9 +69,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Chức năng quản lý</h6>
-                        @Html.ActionLink("Nhà cung cấp","ManageProvider","UserAccount",new {@class = "collapse-item"})
-                        @Html.ActionLink("Tài khoản đăng nhập", "Index", "UserAccount", new {@class="collapse-item"})
-                    </div>
+                        <span class="collapse-item"> @Html.ActionLink("Nhà cung cấp", "ManageProvider", "UserAccount")</span>
+                        <span class="collapse-item"> @Html.ActionLink("Tài khoản đăng nhập", "Index", "UserAccount")</span>
+</div>
                 </div>
             </li>
 

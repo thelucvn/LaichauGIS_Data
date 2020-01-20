@@ -43,6 +43,31 @@ namespace Models
             var list = context.Database.SqlQuery<UserAccount>("sp_UserAccount_ListProvider").ToList();
             return list;
         }
+        public UserAccount getUserAccountByID(int id)
+        {
+            object[] parameters = {
+            new SqlParameter("@UserID",id)
+            };
+            var res = context.Database.SqlQuery<UserAccount>("sp_UserAccount_GetUserbyID @UserID", parameters).SingleOrDefault();
+            return res;
+        }
+        public bool UpdateUserAccount(UserAccount userEntity)
+        {
+            try
+            {
+                object[] parameters =
+                {
+                    new SqlParameter("@UserID",userEntity.userID),
+                    new SqlParameter("@UserName",userEntity.userName),
+                    new SqlParameter("@LoginName",userEntity.loginName)
+                };
+                context.Database.SqlQuery<bool>("sp_Update_UserAccount @UserID,@UserName,@LoginName", parameters).SingleOrDefault();
+                return true;
+            }catch(SqlException e)
+            {
+                return false;
+            }
+        }
 
     }
 }
