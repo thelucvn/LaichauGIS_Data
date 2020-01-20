@@ -45,6 +45,7 @@
         public string loginPassword { get; set; }
 
         [DisplayName("Ngày sinh")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
         public DateTime? birthDate { get; set; }
 
         [StringLength(20)]

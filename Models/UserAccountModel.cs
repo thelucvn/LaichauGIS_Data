@@ -1,4 +1,5 @@
 ﻿using Models.Framework;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -53,20 +54,22 @@ namespace Models
         }
         public bool UpdateUserAccount(UserAccount userEntity)
         {
-            try
-            {
-                object[] parameters =
+
+                SqlParameter[] parameters =new SqlParameter[]
                 {
                     new SqlParameter("@UserID",userEntity.userID),
                     new SqlParameter("@UserName",userEntity.userName),
-                    new SqlParameter("@LoginName",userEntity.loginName)
+                    new SqlParameter("@LoginName",userEntity.loginName),
+                    new SqlParameter("@BirthDate",userEntity.birthDate),
+                    new SqlParameter("@PhoneNumber",userEntity.phoneNumber),
+                    new SqlParameter("@UserPrivateNumber",userEntity.userPrivateNumber),
+                    new SqlParameter("@EmailAddress",userEntity.emailAddress),
+                    new SqlParameter("@Address",userEntity.address),
+                    new SqlParameter("@UserPhoto",userEntity.userPhoto)
                 };
-                context.Database.SqlQuery<bool>("sp_Update_UserAccount @UserID,@UserName,@LoginName", parameters).SingleOrDefault();
-                return true;
-            }catch(SqlException e)
-            {
-                return false;
-            }
+               var res=context.Database.SqlQuery<bool>("sp_Update_UserAccount @UserID,@UserName,@LoginName,@BirthDate,@PhoneNumber,@UserPrivateNumber,@EmailAddress,@Address,@UserPhoto", parameters).SingleOrDefault();
+                return res;
+
         }
 
     }

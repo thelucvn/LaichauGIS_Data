@@ -76,27 +76,22 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 
         // POST: Admin/UserAccount/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UserAccount collection)
         {
-            try
-            {
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {
                     UserAccountModel model = new UserAccountModel();
                     bool res = model.UpdateUserAccount(collection);
+                    ModelState.AddModelError("", "Cập nhật tài khoản thành công!");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật tài khoản không thành công!");
-                    return RedirectToAction("Edit",id);
+                    ModelState.AddModelError("", "Cập nhật tài khoản không thành công!");                 
                 }
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Edit", collection);
+
         }
 
         // GET: Admin/UserAccount/Delete/5
