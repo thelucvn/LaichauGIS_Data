@@ -1928,6 +1928,7 @@
     <Content Include="Areas\Admin\Views\UserAccount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserAccount\ManageProvider.cshtml" />
     <Content Include="Areas\Admin\Views\UserAccount\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAccount\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

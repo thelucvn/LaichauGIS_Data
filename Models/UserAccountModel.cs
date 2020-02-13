@@ -71,6 +71,11 @@ namespace Models
                 return res;
 
         }
+        public bool DeleteUserAccount(int id)
+        {
+            var res = context.Database.SqlQuery<bool>("sp_Delete_UserAccount @UserID", new SqlParameter("@UserID", id)).SingleOrDefault();
+            return res;
+        }
 
     }
 }

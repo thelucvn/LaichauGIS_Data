@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới tài khoản", "Create")
 </p>
 <table class="table">
     <tr>
@@ -22,25 +22,10 @@
             @Html.DisplayNameFor(model => model.loginName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.birthDate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.phoneNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userPrivateNumber)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.emailAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userPhoto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userStatus)
         </th>
         <th></th>
     </tr>
@@ -57,30 +42,15 @@
             @Html.DisplayFor(modelItem => item.loginName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.birthDate)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.phoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userPrivateNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.emailAddress)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userPhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.userID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.userID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.userID })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.userID }) |
+            @Html.ActionLink("Xem chi tiết", "Details", new { id=item.userID }) |
+            @Html.ActionLink("Xóa tài khoản", "Delete", new { id=item.userID })
         </td>
     </tr>
 }

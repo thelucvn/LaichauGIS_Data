@@ -27,7 +27,9 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/UserAccount/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var iplUserAccount = new UserAccountModel();
+            var model = iplUserAccount.getUserAccountByID(id);
+            return View(model);
         }
 
         // GET: Admin/UserAccount/Create
@@ -97,7 +99,9 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/UserAccount/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var iplUserAccount = new UserAccountModel();
+            var res = iplUserAccount.DeleteUserAccount(id);
+            return RedirectToAction("Index");
         }
 
         // POST: Admin/UserAccount/Delete/5
@@ -107,7 +111,8 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                var iplUserAccount = new UserAccountModel();
+                var res = iplUserAccount.DeleteUserAccount(id);
                 return RedirectToAction("Index");
             }
             catch
