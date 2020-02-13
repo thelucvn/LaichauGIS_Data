@@ -92,7 +92,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("", "Cập nhật tài khoản không thành công!");                 
                 }
-            return RedirectToAction("Edit", collection);
+            return RedirectToAction("Index");
 
         }
 
