@@ -51,6 +51,7 @@
         [StringLength(20)]
         [DisplayName("Số điện thoại")]
         [Required(ErrorMessage ="Bạn chưa nhập số điện thoại")]
+        [DefaultValue("")]
         public string phoneNumber { get; set; }
 
         [StringLength(20)]
@@ -64,10 +65,12 @@
 
         [StringLength(200)]
         [DisplayName("Địa chỉ cư trú")]
+        [DefaultValue("")]
         public string address { get; set; }
 
         [StringLength(50)]
         [DisplayName("Ảnh chân dung")]
+        [DefaultValue("")]
         public string userPhoto { get; set; }
 
         [DisplayName("Trạng thái hoạt động")]

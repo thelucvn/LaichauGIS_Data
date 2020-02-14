@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Models.Framework.UserAccount>
+﻿@model PagedList.IPagedList<Models.Framework.UserAccount>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -11,48 +12,67 @@
     @Html.ActionLink("Tạo mới tài khoản", "Create")
 </p>
 <table class="table">
+    <!--<tr>
+          <th>
+              Html.DisplayNameFor(model => model.roleName)
+          </th>
+          <th>
+              Html.DisplayNameFor(model => model.userName)
+          </th>
+          <th>
+              Html.DisplayNameFor(model => model.loginName)
+          </th>
+          <th>
+              Html.DisplayNameFor(model => model.phoneNumber)
+          </th>
+          <th>
+              Html.DisplayNameFor(model => model.emailAddress)
+          </th>
+          <th></th>
+      </tr>-->
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.roleName)
+           Phân loại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userName)
+           Họ tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.loginName)
+           Tên đăng nhập
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.phoneNumber)
+            Số điện thoại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.emailAddress)
+            Địa chỉ Email
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.roleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.loginName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.emailAddress)
-        </td>
-        <td>
-            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.userID }) |
-            @Html.ActionLink("Xem chi tiết", "Details", new { id=item.userID }) |
-            @Html.ActionLink("Xóa tài khoản", "Delete", new { id=item.userID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.roleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.loginName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emailAddress)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.userID }) |
+                @Html.ActionLink("Xem chi tiết", "Details", new { id = item.userID }) |
+                @Html.ActionLink("Xóa tài khoản", "Delete", new { id = item.userID })
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model,page => Url.Action("Index", new { page }),PagedListRenderOptions.MinimalWithPageCountText)

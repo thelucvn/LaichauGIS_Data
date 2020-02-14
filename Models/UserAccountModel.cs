@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-
+using PagedList;
 namespace Models
 {
     public class UserAccountModel
@@ -34,9 +34,9 @@ namespace Models
             var res = context.Database.SqlQuery<int>("sp_Create_UserAccount @UserName,@LoginName,@LoginPassword,@PhoneNumber,@EmailAddress", parameters).SingleOrDefault();
             return res;
         }
-        public List<UserAccount> ListAll()
+        public IEnumerable<UserAccount> ListAll(int page,int pageSize)
         {
-            var list = context.Database.SqlQuery<UserAccount>("sp_UserAccount_ListAll").ToList();
+            var list = context.Database.SqlQuery<UserAccount>("sp_UserAccount_ListAll").ToList().OrderByDescending(x=>x.userID).ToPagedList(page,pageSize);
             return list;
         }
         public List<UserAccount> ListProvider()
@@ -54,21 +54,24 @@ namespace Models
         }
         public bool UpdateUserAccount(UserAccount userEntity)
         {
-
+            DateTime? birthDate = userEntity.birthDate ?? new DateTime(2020,01,01);
+            string userPrivateNumber = userEntity.userPrivateNumber ?? " ";
+            string address = userEntity.address ?? " ";
+            string userPhoto = userEntity.userPhoto ?? " ";
                 SqlParameter[] parameters =new SqlParameter[]
                 {
                     new SqlParameter("@UserID",userEntity.userID),
                     new SqlParameter("@UserName",userEntity.userName),
                     new SqlParameter("@LoginName",userEntity.loginName),
-                    new SqlParameter("@BirthDate",userEntity.birthDate),
+                    new SqlParameter("@BirthDate",birthDate),
                     new SqlParameter("@PhoneNumber",userEntity.phoneNumber),
-                    new SqlParameter("@UserPrivateNumber",userEntity.userPrivateNumber),
+                    new SqlParameter("@UserPrivateNumber",userPrivateNumber),
                     new SqlParameter("@EmailAddress",userEntity.emailAddress),
-                    new SqlParameter("@Address",userEntity.address),
-                    new SqlParameter("@UserPhoto",userEntity.userPhoto)
+                    new SqlParameter("@Address",address),
+                    new SqlParameter("@UserPhoto",userPhoto)
                 };
                var res=context.Database.SqlQuery<bool>("sp_Update_UserAccount @UserID,@UserName,@LoginName,@BirthDate,@PhoneNumber,@UserPrivateNumber,@EmailAddress,@Address,@UserPhoto", parameters).SingleOrDefault();
-                return res;
+               return res;
 
         }
         public bool DeleteUserAccount(int id)

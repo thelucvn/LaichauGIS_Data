@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList.Mvc;
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
     public class UserAccountController : Controller
     {
         // GET: Admin/UserAccount
-        public ActionResult Index()
+        public ActionResult Index(int page=1,int pageSize=5)
         {
             var iplUserAccount = new UserAccountModel();
-            var model = iplUserAccount.ListAll();
+            var model = iplUserAccount.ListAll(page,pageSize);
             return View(model);
         }
         [HttpGet]
