@@ -6,6 +6,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("UserAccount")]
     public partial class UserAccount
@@ -44,7 +45,7 @@
         [Required(ErrorMessage = "Bạn chưa nhập mật khẩu")]
         public string loginPassword { get; set; }
 
-        [DisplayName("Ngày sinh")]
+        [DisplayName("Ngày sinh (MM/dd/yyyy)")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? birthDate { get; set; }
 
@@ -76,6 +77,8 @@
         [DisplayName("Trạng thái hoạt động")]
         public int userStatus { get; set; }
 
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeasurementData> MeasurementDatas { get; set; }
 

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList.Mvc;
+using System.IO;
+
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
     public class UserAccountController : Controller
@@ -81,17 +83,20 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UserAccount collection)
         {
-                // TODO: Add update logic here
-                if (ModelState.IsValid)
-                {
+            // TODO: Add update logic here
+            if (collection.ImageFile != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(collection.ImageFile.FileName);
+                string fileExtension = Path.GetExtension(collection.ImageFile.FileName);
+                fileName = fileName + fileExtension;
+                collection.userPhoto = "/Photos/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Photos/"), fileName);
+                collection.ImageFile.SaveAs(fileName);
+            }
+            
                     UserAccountModel model = new UserAccountModel();
                     bool res = model.UpdateUserAccount(collection);
-                    ModelState.AddModelError("", "Cập nhật tài khoản thành công!");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Cập nhật tài khoản không thành công!");                 
-                }
+
             return RedirectToAction("Index");
 
         }

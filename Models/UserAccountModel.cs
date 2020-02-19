@@ -54,7 +54,8 @@ namespace Models
         }
         public bool UpdateUserAccount(UserAccount userEntity)
         {
-            DateTime? birthDate = userEntity.birthDate ?? new DateTime(2020,01,01);
+            string date = userEntity.birthDate.ToString() ?? "01/01/2018";
+            DateTime? birthDate = Convert.ToDateTime(date);
             string userPrivateNumber = userEntity.userPrivateNumber ?? " ";
             string address = userEntity.address ?? " ";
             string userPhoto = userEntity.userPhoto ?? " ";
@@ -62,7 +63,6 @@ namespace Models
                 {
                     new SqlParameter("@UserID",userEntity.userID),
                     new SqlParameter("@UserName",userEntity.userName),
-                    new SqlParameter("@LoginName",userEntity.loginName),
                     new SqlParameter("@BirthDate",birthDate),
                     new SqlParameter("@PhoneNumber",userEntity.phoneNumber),
                     new SqlParameter("@UserPrivateNumber",userPrivateNumber),
@@ -70,7 +70,7 @@ namespace Models
                     new SqlParameter("@Address",address),
                     new SqlParameter("@UserPhoto",userPhoto)
                 };
-               var res=context.Database.SqlQuery<bool>("sp_Update_UserAccount @UserID,@UserName,@LoginName,@BirthDate,@PhoneNumber,@UserPrivateNumber,@EmailAddress,@Address,@UserPhoto", parameters).SingleOrDefault();
+               var res=context.Database.SqlQuery<bool>("sp_Update_UserAccount @UserID,@UserName,@BirthDate,@PhoneNumber,@UserPrivateNumber,@EmailAddress,@Address,@UserPhoto", parameters).SingleOrDefault();
                return res;
 
         }
