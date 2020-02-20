@@ -7,7 +7,7 @@
 
 <h2>Chỉnh sửa</h2>
 
-@using (Html.BeginForm("Edit","UserAccount",FormMethod.Post,new { enctype="multipart/form-data"}))
+@using (Html.BeginForm("Edit", "UserAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -17,11 +17,11 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.userID)
         @Html.HiddenFor(model => model.loginPassword)
-        @Html.HiddenFor(model=>model.userPhoto)
+        @Html.HiddenFor(model => model.userPhoto)
         <div class="form-group">
             @Html.LabelFor(model => model.roleName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.roleName, htmlAttributes: new { @class = "form-control", disabled=true })
+                @Html.TextBoxFor(model => model.roleName, htmlAttributes: new { @class = "form-control", disabled = true })
                 @Html.ValidationMessageFor(model => model.roleName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,17 +49,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.loginName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.loginName, htmlAttributes: new { @class = "form-control" , disabled=true})
+                @Html.TextBoxFor(model => model.loginName, htmlAttributes: new { @class = "form-control", disabled = true })
                 @Html.ValidationMessageFor(model => model.loginName, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.birthDate, htmlAttributes: new { @class = "control-label col-md-2" }) 
+            @Html.LabelFor(model => model.birthDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.birthDate,"{0:MM/dd/yyyy}",htmlAttributes: new { @class = "form-control"})
+                @Html.TextBoxFor(model => model.birthDate, "{0:MM/dd/yyyy}", htmlAttributes: new { @class = "form-control", disabled = true })
                 @Html.ValidationMessageFor(model => model.birthDate, "", new { @class = "text-danger" })
+                Chọn ngày: <input type="date" id="SelectedDate" name="SelectedDate"/>
             </div>
         </div>
 
@@ -99,7 +100,7 @@
             @Html.LabelFor(model => model.userPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="ImageFile" />
-         
+
                 <img src="@Model.userPhoto" width="200" height="200" />
             </div>
         </div>
@@ -115,3 +116,24 @@
 <div>
     @Html.ActionLink("<< Trở về", "Index")
 </div>
+
+@section Scripts
+    {
+    <script>
+        var d = '@Model.birthDate';
+        if (d.toString().length == 0) {
+            d = new Date();
+        } else {
+            d = new Date('@Model.birthDate.ToString()');
+        }           
+        day = d.getDate();
+        if (day.toString().length < 2)
+            day = "0" + day;
+        mon = 1+d.getMonth();
+        if (mon.toString().length < 2)
+            mon = "0" + mon;
+        year = d.getFullYear();
+        setd = year + "-" + mon + "-" + day;
+        document.getElementById("SelectedDate").value = setd;
+    </script>
+}

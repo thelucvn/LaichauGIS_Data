@@ -54,7 +54,7 @@ namespace Models
         }
         public bool UpdateUserAccount(UserAccount userEntity)
         {
-            string date = userEntity.birthDate.ToString() ?? "01/01/2018";
+            string date = userEntity.birthDate.ToString();
             DateTime? birthDate = Convert.ToDateTime(date);
             string userPrivateNumber = userEntity.userPrivateNumber ?? " ";
             string address = userEntity.address ?? " ";

@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/Assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
 
 </head>
 
@@ -34,7 +35,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -46,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="~/Admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -71,7 +73,7 @@
                         <h6 class="collapse-header">Chức năng quản lý</h6>
                         <span class="collapse-item"> @Html.ActionLink("Nhà cung cấp", "ManageProvider", "UserAccount")</span>
                         <span class="collapse-item"> @Html.ActionLink("Tài khoản đăng nhập", "Index", "UserAccount")</span>
-</div>
+                    </div>
                 </div>
             </li>
 
@@ -324,9 +326,9 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!--<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-        Logout
-    </a>-->
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>-->
                                 <span class="dropdown-item"> <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>@Html.ActionLink("Đăng xuất", "Logout", "Login")</span>
 
                             </div>
@@ -339,7 +341,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                       @RenderBody()
+                    @RenderBody()
 
                 </div>
                 <!-- /.container-fluid -->
@@ -401,7 +403,7 @@
     <!-- Page level custom scripts -->
     <script src="/Assets/admin/js/demo/chart-area-demo.js"></script>
     <script src="/Assets/admin/js/demo/chart-pie-demo.js"></script>
-
+    @RenderSection("Scripts", false/*required*/)
 </body>
 
 </html>

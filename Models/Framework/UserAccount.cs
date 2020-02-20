@@ -79,6 +79,8 @@
 
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
+        [NotMapped]
+        public DateTime SelectedDate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeasurementData> MeasurementDatas { get; set; }
 

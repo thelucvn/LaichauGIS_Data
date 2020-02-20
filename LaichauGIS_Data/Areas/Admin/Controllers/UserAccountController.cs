@@ -93,7 +93,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 fileName = Path.Combine(Server.MapPath("~/Photos/"), fileName);
                 collection.ImageFile.SaveAs(fileName);
             }
-            
+            collection.birthDate = collection.SelectedDate;
                     UserAccountModel model = new UserAccountModel();
                     bool res = model.UpdateUserAccount(collection);
 
