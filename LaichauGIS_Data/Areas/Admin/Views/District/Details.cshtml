@@ -1,0 +1,108 @@
+﻿@model Models.Framework.District
+   
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Địa bàn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.districtName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.districtName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.population)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.population)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.districtDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.districtDescription)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+<h2>Danh sách các xã thuộc huyện</h2>
+@Html.ActionLink("Thêm xã mới", "CreateNewWard",new { districtID=Model.districtID})
+
+<table class="table">
+    <tr>
+        <th>
+           Tên xã
+        </th>
+        <th>
+           Kinh độ
+        </th>
+        <th>
+           Vĩ độ
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Wards)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.wardName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longitude)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "EditWard", new { wid = item.wardID }) |
+                @Html.ActionLink("Xem chi tiết", "WardDetails", new { wid = item.wardID }) |
+                @Html.ActionLink("Xóa", "DeleteWard", new { wid = item.wardID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { id = Model.districtID }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

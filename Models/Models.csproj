@@ -74,7 +74,9 @@
     <Compile Include="Framework\Ward.cs" />
     <Compile Include="Framework\WarningSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleModel.cs" />
     <Compile Include="UserAccountModel.cs" />
+    <Compile Include="WardDistrictModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

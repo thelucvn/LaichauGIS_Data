@@ -1,0 +1,41 @@
+﻿@model Models.Framework.Role
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa loại tài khoản</h2>
+
+<h3 style="color:red">Bạn có chắc chắn muốn xóa loại tài khoản?</h3>
+<div>
+    <h4>@Html.DisplayFor(model=>model.roleName)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.roleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionInfo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

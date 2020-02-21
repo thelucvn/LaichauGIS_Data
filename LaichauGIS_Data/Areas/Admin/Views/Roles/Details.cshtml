@@ -1,0 +1,35 @@
+﻿@model Models.Framework.Role
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Loại tài khoản</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.roleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptionInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptionInfo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.roleID }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

@@ -96,7 +96,10 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             collection.birthDate = collection.SelectedDate;
                     UserAccountModel model = new UserAccountModel();
                     bool res = model.UpdateUserAccount(collection);
-
+            if (collection.roleID == 3)
+            {
+                return RedirectToAction("ManageProvider");
+            }
             return RedirectToAction("Index");
 
         }

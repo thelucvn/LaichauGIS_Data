@@ -1,0 +1,75 @@
+﻿@model Models.Framework.Ward
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Địa bàn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.District.districtName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District.districtName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.population)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.population)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wardDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wardDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.wardID }) |
+    @Html.ActionLink("Quay lại", "DistrictDetails",new {dictID=Model.districtID})
+</p>
