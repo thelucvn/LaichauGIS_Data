@@ -22,6 +22,7 @@
             WarningSettings = new HashSet<WarningSetting>();
         }
         [DisplayName("Phân loại")]
+        [NotMapped]
         public string roleName { get; set; }
         [Key]
         public int userID { get; set; }

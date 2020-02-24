@@ -50,6 +50,8 @@ namespace Models
             new SqlParameter("@UserID",id)
             };
             var res = context.Database.SqlQuery<UserAccount>("sp_UserAccount_GetUserbyID @UserID", parameters).SingleOrDefault();
+            string roleName = context.Roles.Find(res.roleID).roleName;
+            res.roleName = roleName;
             return res;
         }
         public bool UpdateUserAccount(UserAccount userEntity)

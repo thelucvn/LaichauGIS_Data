@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Models.Framework.MeasurementLocation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách các điểm đo</h2>
+
+<p>
+    @Html.ActionLink("Thêm điểm đo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Tên nhà cung cấp
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ward.wardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mLocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mLocationStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ward.wardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mLocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @(item.mLocationStatus==1?"Đang hoạt động":"Dừng hoạt động")
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.mLocationID }) |
+            @Html.ActionLink("Xem chi tiết", "Details", new { id=item.mLocationID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.mLocationID })
+        </td>
+    </tr>
+}
+
+</table>

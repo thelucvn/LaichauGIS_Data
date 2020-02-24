@@ -14,7 +14,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.roleName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.roleName)
         </dd>
@@ -88,7 +87,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.userPhoto)
+            <img src="@Model.userPhoto" width="200" height="200" />
         </dd>
 
         <dt>
@@ -96,7 +95,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.userStatus)
+
+            @(Model.userStatus==1?"Đã kích hoạt":"Khóa")
         </dd>
 
     </dl>

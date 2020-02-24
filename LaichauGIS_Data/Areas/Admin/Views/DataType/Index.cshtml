@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Models.Framework.DataType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách kiểu dữ liệu đo</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới kiểu dữ liệu đo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dataTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mUnit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mUnit)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.dataTypeID }) |
+            @Html.ActionLink("Xem chi tiết", "Details", new { id=item.dataTypeID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.dataTypeID })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.ActionLink("Danh sách dữ liệu đo", "Index", "MeasurementData")

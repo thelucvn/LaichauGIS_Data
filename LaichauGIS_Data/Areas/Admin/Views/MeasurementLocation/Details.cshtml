@@ -1,0 +1,68 @@
+﻿@model Models.Framework.MeasurementLocation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Điểm đo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nhà cung cấp
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ward.wardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.wardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mLocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mLocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mLocationStatus)
+        </dt>
+
+        <dd>
+           @(Model.mLocationStatus == 1?"Đang hoạt động":"Dừng hoạt động")
+            
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.mLocationID }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

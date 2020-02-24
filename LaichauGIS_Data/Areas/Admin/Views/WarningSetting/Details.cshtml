@@ -1,0 +1,67 @@
+﻿@model Models.Framework.WarningSetting
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Thiết lập cảnh báo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataType.dataTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataType.dataTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasurementLocation.mLocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasurementLocation.mLocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccount.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.levelSetting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.levelSetting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.settingStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.settingStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.settingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.settingDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.settingID }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

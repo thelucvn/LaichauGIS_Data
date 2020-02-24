@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Models.Framework.WarningSetting>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách thiết lập cảnh báo</h2>
+
+<p>
+    @Html.ActionLink("Thêm thiết lập", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataType.dataTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeasurementLocation.mLocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAccount.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.levelSetting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.settingStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.settingDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataType.dataTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasurementLocation.mLocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.levelSetting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.settingStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.settingDate)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.settingID }) |
+            @Html.ActionLink("Xem chi tiết", "Details", new { id=item.settingID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.settingID })
+        </td>
+    </tr>
+}
+
+</table>

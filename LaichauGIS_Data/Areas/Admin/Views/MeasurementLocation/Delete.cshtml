@@ -1,0 +1,73 @@
+﻿@model Models.Framework.MeasurementLocation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MeasurementLocation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccount.roleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.roleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ward.wardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.wardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mLocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mLocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mLocationStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mLocationStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
