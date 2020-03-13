@@ -17,7 +17,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/WarningSetting
         public ActionResult Index()
         {
-            var warningSettings = db.WarningSettings.Include(w => w.DataType).Include(w => w.MeasurementLocation).Include(w => w.UserAccount);
+            var warningSettings = db.WarningSettings.Include(w => w.DataType).Include(w => w.MeasurementLocation).Include(w => w.UserAccount).OrderByDescending(w=>w.settingID);
             return View(warningSettings.ToList());
         }
 

@@ -17,7 +17,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/Ward
         public ActionResult Index()
         {
-            var wards = db.Wards.Include(w => w.District);
+            var wards = db.Wards.Include(w => w.District).OrderByDescending(w=>w.wardID);
             return View(wards.ToList());
         }
 

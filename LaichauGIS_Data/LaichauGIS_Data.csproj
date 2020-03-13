@@ -1980,6 +1980,7 @@
     <Content Include="Areas\Admin\Views\WarningSetting\Details.cshtml" />
     <Content Include="Areas\Admin\Views\WarningSetting\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\WarningSetting\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
