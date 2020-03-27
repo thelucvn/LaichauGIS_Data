@@ -86,12 +86,6 @@ namespace Models.Framework
                 .IsFixedLength();
 
             modelBuilder.Entity<UserAccount>()
-                .HasMany(e => e.MeasurementDatas)
-                .WithRequired(e => e.UserAccount)
-                .HasForeignKey(e => e.supplierID)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<UserAccount>()
                 .HasMany(e => e.MeasurementLocations)
                 .WithRequired(e => e.UserAccount)
                 .HasForeignKey(e => e.supplierID)

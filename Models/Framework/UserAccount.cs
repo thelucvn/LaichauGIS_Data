@@ -14,7 +14,6 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserAccount()
         {
-            MeasurementDatas = new HashSet<MeasurementData>();
             MeasurementLocations = new HashSet<MeasurementLocation>();
             Messages = new HashSet<Message>();
             Messages1 = new HashSet<Message>();
@@ -82,8 +81,6 @@
         public HttpPostedFileBase ImageFile { get; set; }
         [NotMapped]
         public DateTime SelectedDate { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MeasurementData> MeasurementDatas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeasurementLocation> MeasurementLocations { get; set; }

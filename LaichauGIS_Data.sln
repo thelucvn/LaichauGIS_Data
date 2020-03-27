@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaichauGIS_Data", "LaichauGIS_Data\LaichauGIS_Data.csproj", "{DC83497B-C9C4-49A9-8E87-20C2566063EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaichauGIS_Data.Tests", "LaichauGIS_Data.Tests\LaichauGIS_Data.Tests.csproj", "{141B8F8E-453D-4719-A107-9942A03017FA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{5DE91983-FE36-49F1-9067-8D4DDC7AF062}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{DC83497B-C9C4-49A9-8E87-20C2566063EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC83497B-C9C4-49A9-8E87-20C2566063EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC83497B-C9C4-49A9-8E87-20C2566063EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{141B8F8E-453D-4719-A107-9942A03017FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{141B8F8E-453D-4719-A107-9942A03017FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{141B8F8E-453D-4719-A107-9942A03017FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{141B8F8E-453D-4719-A107-9942A03017FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE91983-FE36-49F1-9067-8D4DDC7AF062}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -18,7 +18,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/MeasurementData
         public ActionResult Index(int page=1,int pageSize=10)
         {           
-            var measurementDatas = db.MeasurementDatas.Include(m => m.DataType).Include(m => m.MeasurementLocation).Include(m => m.UserAccount).ToList().OrderByDescending(x => x.mDataID).ToPagedList(page, pageSize);
+            var measurementDatas = db.MeasurementDatas.Include(m => m.DataType).Include(m => m.MeasurementLocation).ToList().OrderByDescending(x => x.mDataID).ToPagedList(page, pageSize);
             return View(measurementDatas);
         }
 
@@ -62,7 +62,6 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 
             ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName", measurementData.dataTypeID);
             ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName", measurementData.mLocationID);
-            ViewBag.supplierID = new SelectList(db.UserAccounts, "userID", "userName", measurementData.supplierID);
             return View(measurementData);
         }
 
@@ -80,7 +79,6 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             }
             ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName", measurementData.dataTypeID);
             ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName", measurementData.mLocationID);
-            ViewBag.supplierID = new SelectList(db.UserAccounts, "userID", "userName", measurementData.supplierID);
             return View(measurementData);
         }
 
@@ -99,7 +97,6 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             }
             ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName", measurementData.dataTypeID);
             ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName", measurementData.mLocationID);
-            ViewBag.supplierID = new SelectList(db.UserAccounts, "userID", "userName", measurementData.supplierID);
             return View(measurementData);
         }
 

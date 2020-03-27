@@ -20,7 +20,6 @@
 
         public int dataTypeID { get; set; }
 
-        public int supplierID { get; set; }
         [DisplayName("Giá trị")]
         public double mDataValue { get; set; }
        
@@ -28,6 +27,5 @@
 
         public virtual MeasurementLocation MeasurementLocation { get; set; }
 
-        public virtual UserAccount UserAccount { get; set; }
     }
 }
