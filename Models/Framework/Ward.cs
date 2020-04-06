@@ -14,6 +14,7 @@
         public Ward()
         {
             MeasurementLocations = new HashSet<MeasurementLocation>();
+            Photos = new HashSet<Photo>();
         }
         public Ward(int id)
         {
@@ -43,5 +44,7 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeasurementLocation> MeasurementLocations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

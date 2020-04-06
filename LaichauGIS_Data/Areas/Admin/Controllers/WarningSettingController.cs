@@ -10,10 +10,14 @@ using Models.Framework;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class WarningSettingController : Controller
+    [Authorize]
+    public class WarningSettingController : MyBaseController
     {
         private LaichauDBContext db = new LaichauDBContext();
-
+        public WarningSettingController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
         // GET: Admin/WarningSetting
         public ActionResult Index()
         {

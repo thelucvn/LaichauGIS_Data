@@ -51,11 +51,6 @@ namespace Models.Framework
                 .WithRequired(e => e.MeasurementLocation)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<MeasurementLocation>()
-                .HasMany(e => e.Photos)
-                .WithRequired(e => e.MeasurementLocation)
-                .HasForeignKey(e => e.locationID)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MeasurementLocation>()
                 .HasMany(e => e.WarningSettings)
@@ -117,6 +112,12 @@ namespace Models.Framework
             modelBuilder.Entity<Ward>()
                 .HasMany(e => e.MeasurementLocations)
                 .WithRequired(e => e.Ward)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ward>()
+                .HasMany(e => e.Photos)
+                .WithRequired(e => e.Ward)
+                .HasForeignKey(e => e.wardID)
                 .WillCascadeOnDelete(false);
         }
     }

@@ -10,9 +10,14 @@ using Models.Framework;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class DataTypeController : Controller
+    [Authorize]
+    public class DataTypeController : MyBaseController
     {
         private LaichauDBContext db = new LaichauDBContext();
+        public DataTypeController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
 
         // GET: Admin/DataType
         public ActionResult Index()

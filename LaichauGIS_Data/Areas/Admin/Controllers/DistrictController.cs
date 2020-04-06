@@ -10,10 +10,14 @@ using Models.Framework;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class DistrictController : Controller
+    [Authorize]
+    public class DistrictController : MyBaseController
     {
         private LaichauDBContext db = new LaichauDBContext();
-
+        public DistrictController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
         // GET: Admin/District
         public ActionResult Index()
         {

@@ -19,6 +19,7 @@
         @Html.HiddenFor(model => model.loginPassword)
         @Html.HiddenFor(model => model.userPhoto)
         @Html.HiddenFor(model => model.roleID)
+        @Html.HiddenFor(model => model.emailAddress)
         <div class="form-group">
             @Html.LabelFor(model => model.roleName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -84,7 +85,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.emailAddress, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.emailAddress, htmlAttributes: new { @class = "form-control",disabled=true })
                 @Html.ValidationMessageFor(model => model.emailAddress, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,9 +101,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.userPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="ImageFile" />
+                <input type="file" name="ImageFile" id="imgInput" disabled="@(Model.userID==int.Parse(Html.Action("GetUserID","MyBase").ToString())?false:true)" />
 
-                <img src="@Model.userPhoto" width="200" height="200" />
+                <img src="@Model.userPhoto" id="uploadImage" width="200" height="200" />
             </div>
         </div>
 
@@ -121,6 +122,7 @@
 @section Scripts
     {
     <script>
+        function setDate() {
         var d = '@Model.birthDate';
         if (d.toString().length == 0) {
             d = new Date();
@@ -136,5 +138,23 @@
         year = d.getFullYear();
         setd = year + "-" + mon + "-" + day;
         document.getElementById("SelectedDate").value = setd;
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var path = e.target.result;
+                    $('#uploadImage').attr('src', path);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+        setDate();
+        $("#imgInput").change(function () {
+            readURL(this);
+        });
     </script>
 }

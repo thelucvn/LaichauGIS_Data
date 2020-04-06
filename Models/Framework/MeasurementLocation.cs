@@ -14,7 +14,6 @@
         public MeasurementLocation()
         {
             MeasurementDatas = new HashSet<MeasurementData>();
-            Photos = new HashSet<Photo>();
             WarningSettings = new HashSet<WarningSetting>();
         }
 
@@ -45,9 +44,6 @@
         public virtual UserAccount UserAccount { get; set; }
 
         public virtual Ward Ward { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Photo> Photos { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarningSetting> WarningSettings { get; set; }

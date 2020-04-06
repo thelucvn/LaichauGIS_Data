@@ -11,9 +11,14 @@ using PagedList;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class MeasurementDataController : Controller
+    [Authorize]
+    public class MeasurementDataController : MyBaseController
     {
         private LaichauDBContext db = new LaichauDBContext();
+        public MeasurementDataController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
 
         // GET: Admin/MeasurementData
         public ActionResult Index(int page=1,int pageSize=10)

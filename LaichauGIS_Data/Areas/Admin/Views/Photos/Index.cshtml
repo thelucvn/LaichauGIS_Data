@@ -1,0 +1,49 @@
+﻿@model PagedList.IPagedList<Models.Framework.Photo>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách hình ảnh</h2>
+
+<p>
+    @Html.ActionLink("Thêm hình ảnh", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Ngày đăng tải
+        </th>
+        <th>
+            Đường dẫn
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.photoTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uploadDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.photoUrl)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.photoID }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.photoID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.photoID })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.MinimalWithPageCountText)

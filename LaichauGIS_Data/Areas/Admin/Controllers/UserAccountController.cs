@@ -10,10 +10,15 @@ using System.IO;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class UserAccountController : Controller
+    [Authorize]
+    public class UserAccountController : MyBaseController
     {
+        public UserAccountController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
         // GET: Admin/UserAccount
-        public ActionResult Index(int page=1,int pageSize=5)
+        public ActionResult Index(int page=1,int pageSize=15)
         {
             var iplUserAccount = new UserAccountModel();
             var model = iplUserAccount.ListAll(page,pageSize);
@@ -86,11 +91,11 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             // TODO: Add update logic here
             if (collection.ImageFile != null)
             {
-                string fileName = Path.GetFileNameWithoutExtension(collection.ImageFile.FileName);
                 string fileExtension = Path.GetExtension(collection.ImageFile.FileName);
-                fileName = fileName + fileExtension;
-                collection.userPhoto = "/Photos/" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Photos/"), fileName);
+                var uniqFileName = Guid.NewGuid().ToString();
+                var fileName = Path.GetFileName(uniqFileName + fileExtension.ToLower());
+                collection.userPhoto = @"\Upload\UserImages\" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Upload/UserImages/"), fileName);
                 collection.ImageFile.SaveAs(fileName);
             }
             collection.birthDate = collection.SelectedDate;

@@ -59,6 +59,7 @@ namespace Models
             string date = userEntity.birthDate.ToString();
             DateTime? birthDate = Convert.ToDateTime(date);
             string userPrivateNumber = userEntity.userPrivateNumber ?? " ";
+            string phoneNumber = userEntity.phoneNumber ?? " ";
             string address = userEntity.address ?? " ";
             string userPhoto = userEntity.userPhoto ?? " ";
                 SqlParameter[] parameters =new SqlParameter[]
@@ -66,7 +67,7 @@ namespace Models
                     new SqlParameter("@UserID",userEntity.userID),
                     new SqlParameter("@UserName",userEntity.userName),
                     new SqlParameter("@BirthDate",birthDate),
-                    new SqlParameter("@PhoneNumber",userEntity.phoneNumber),
+                    new SqlParameter("@PhoneNumber",phoneNumber),
                     new SqlParameter("@UserPrivateNumber",userPrivateNumber),
                     new SqlParameter("@EmailAddress",userEntity.emailAddress),
                     new SqlParameter("@Address",address),

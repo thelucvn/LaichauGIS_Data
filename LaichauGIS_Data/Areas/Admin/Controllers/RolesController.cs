@@ -11,10 +11,14 @@ using Models;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class RolesController : Controller
+    [Authorize]
+    public class RolesController : MyBaseController
     {
         private LaichauDBContext db = new LaichauDBContext();
-
+        public RolesController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
         // GET: Admin/Roles
         public ActionResult Index()
         {

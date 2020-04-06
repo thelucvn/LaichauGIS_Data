@@ -1,0 +1,78 @@
+﻿@model Models.Framework.Photo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xác nhận xóa hình ảnh</h2>
+
+<h3 style="color:red">Bạn có chắc chắn muốn xóa hình ảnh này?</h3>
+<div>
+    <h4>Hình ảnh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.photoTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photoTitle)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.UserAccount.userName,"Đăng bởi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.userName)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Ward.wardName,"Địa điểm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.wardName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.uploadDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uploadDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photoStatus)
+        </dt>
+
+        <dd>
+            @(Model.photoStatus==1?"Hiển thị":"Không hiển thị")
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.photoUrl, "Đường dẫn")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photoUrl)
+        </dd>
+        <dt>
+           Hình ảnh
+        </dt>
+
+        <dd>
+            <img src="@Model.photoUrl" width="300" height="200"/>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

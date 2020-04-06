@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -35,12 +34,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            
+
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Trang chủ <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -50,7 +49,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="~/Admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>Bảng điều khiển</span>
                 </a>
             </li>
 
@@ -73,7 +72,7 @@
                         <h6 class="collapse-header">Chức năng quản lý</h6>
                         <span class="collapse-item"> @Html.ActionLink("Nhà cung cấp", "ManageProvider", "UserAccount")</span>
                         <span class="collapse-item"> @Html.ActionLink("Tài khoản đăng nhập", "Index", "UserAccount")</span>
-                        <span class="collapse-item">@Html.ActionLink("Phân loại tài khoản","Index","Roles")</span>
+                        <span class="collapse-item">@Html.ActionLink("Phân loại tài khoản", "Index", "Roles")</span>
                     </div>
                 </div>
             </li>
@@ -91,6 +90,7 @@
                         <a class="collapse-item" href="~/Admin/MeasurementLocation">Thông tin điểm đo</a>
                         <a class="collapse-item" href="~/Admin/MeasurementData">Quản lý dữ liệu đo</a>
                         <a class="collapse-item" href="~/Admin/WarningSetting">Thiết lập cảnh báo</a>
+                        <a class="collapse-item" href="~/Admin/Photos">Quản lý hình ảnh</a>
                     </div>
                 </div>
             </li>
@@ -308,22 +308,23 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                               
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Html.Action("GetName", "MyBase")</span>
+                                <img class="img-profile rounded-circle" src="@Html.Action("GetUserPhotoUrl","MyBase")">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="~/@Html.Action("GetDetailsAccount","MyBase")">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Tài khoản
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="~/@Html.Action("GetEditAccount","MyBase")">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                    Cập nhật
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Hoạt động
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!--<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

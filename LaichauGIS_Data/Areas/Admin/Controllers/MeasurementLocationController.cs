@@ -10,10 +10,15 @@ using Models.Framework;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
-    public class MeasurementLocationController : Controller
+    [Authorize]
+    public class MeasurementLocationController : MyBaseController
     {
         private LaichauDBContext db = new LaichauDBContext();
 
+        public MeasurementLocationController()
+        {
+            MyBaseController.GetMyBaseController();
+        }
         // GET: Admin/MeasurementLocation
         public ActionResult Index()
         {

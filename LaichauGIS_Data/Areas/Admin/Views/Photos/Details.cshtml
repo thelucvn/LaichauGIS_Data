@@ -1,0 +1,73 @@
+﻿@model Models.Framework.Photo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Hình ảnh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.photoTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photoTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccount.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ward.wardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.wardName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.uploadDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uploadDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photoStatus)
+        </dt>
+
+        <dd>
+            @(Model.photoStatus == 1 ? "Hiển thị" : "Không hiển thị")
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.photoUrl, "Đường dẫn")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photoUrl)
+        </dd>
+        <dt>
+            Hình ảnh
+        </dt>
+        <dd>
+            <img src="@Model.photoUrl" id="imgView" width="300" height="200" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.photoID }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>
+
