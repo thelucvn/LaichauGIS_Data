@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList.Mvc;
 using System.IO;
+using System.Configuration;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
@@ -36,6 +37,11 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         {
             var iplUserAccount = new UserAccountModel();
             var model = iplUserAccount.getUserAccountByID(id);
+            if (model.roleID != 2)
+            {
+                string serverMapPath = ConfigurationManager.AppSettings["BaseAddress_2"];
+                model.userPhoto = serverMapPath + model.userPhoto;
+            }
             return View(model);
         }
 
@@ -80,6 +86,11 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         {
             UserAccountModel model = new UserAccountModel();
             UserAccount userEntity = model.getUserAccountByID(id);
+            if (userEntity.roleID != 2)
+            {
+                string serverMapPath = ConfigurationManager.AppSettings["BaseAddress_2"];
+                userEntity.userPhoto = serverMapPath + userEntity.userPhoto;
+            }
             return View(userEntity);
         }
 
@@ -99,6 +110,8 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 collection.ImageFile.SaveAs(fileName);
             }
             collection.birthDate = collection.SelectedDate;
+            string baseAddress = ConfigurationManager.AppSettings["BaseAddress_2"];
+            collection.userPhoto = collection.userPhoto.Replace(baseAddress, "");
                     UserAccountModel model = new UserAccountModel();
                     bool res = model.UpdateUserAccount(collection);
             if (collection.roleID == 3)
