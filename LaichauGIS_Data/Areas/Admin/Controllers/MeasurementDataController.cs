@@ -23,7 +23,8 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/MeasurementData
         public ActionResult Index(int page=1,int pageSize=10)
         {           
-            var measurementDatas = db.MeasurementDatas.Include(m => m.DataType).Include(m => m.MeasurementLocation).ToList().OrderByDescending(x => x.mDataID).ToPagedList(page, pageSize);
+  
+            var measurementDatas = db.Database.SqlQuery<MeasurementData>("exec sp_GetAllMeasurementData").ToList().OrderByDescending(x => x.mDataID).ToPagedList(page, pageSize);
             return View(measurementDatas);
         }
 
@@ -42,68 +43,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             return View(measurementData);
         }
 
-        // GET: Admin/MeasurementData/Create
-        public ActionResult Create()
-        {
-            ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName");
-            ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName");
-            ViewBag.supplierID = new SelectList(db.UserAccounts, "userID", "userName");
-            return View();
-        }
 
-        // POST: Admin/MeasurementData/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mDataID,mLocationID,updateTime,dataTypeID,supplierID,mDataValue")] MeasurementData measurementData)
-        {
-            if (ModelState.IsValid)
-            {
-                db.MeasurementDatas.Add(measurementData);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName", measurementData.dataTypeID);
-            ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName", measurementData.mLocationID);
-            return View(measurementData);
-        }
-
-        // GET: Admin/MeasurementData/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MeasurementData measurementData = db.MeasurementDatas.Find(id);
-            if (measurementData == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName", measurementData.dataTypeID);
-            ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName", measurementData.mLocationID);
-            return View(measurementData);
-        }
-
-        // POST: Admin/MeasurementData/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "mDataID,mLocationID,updateTime,dataTypeID,supplierID,mDataValue")] MeasurementData measurementData)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(measurementData).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.dataTypeID = new SelectList(db.DataTypes, "dataTypeID", "dataTypeName", measurementData.dataTypeID);
-            ViewBag.mLocationID = new SelectList(db.MeasurementLocations, "mLocationID", "mLocationName", measurementData.mLocationID);
-            return View(measurementData);
-        }
 
         // GET: Admin/MeasurementData/Delete/5
         public ActionResult Delete(int? id)

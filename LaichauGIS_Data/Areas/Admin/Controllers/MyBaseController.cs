@@ -26,7 +26,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 baseControllerInstance = new MyBaseController();
             return baseControllerInstance;
         }
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Post|HttpVerbs.Get)]
         public string GetName()
         {
             MyBaseModel mBaseModel = baseControllerInstance.getBaseModel();
@@ -34,7 +34,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 return "";
             return mBaseModel.LoginAccount.userName;
         }
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public string GetUserPhotoUrl()
         {
             MyBaseModel mBaseModel = baseControllerInstance.getBaseModel();
@@ -42,7 +42,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 return "";
             return mBaseModel.LoginAccount.userPhoto;
         }
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public int GetUserID()
         {
             MyBaseModel mBaseModel = baseControllerInstance.getBaseModel();
@@ -50,13 +50,13 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 return 0;
             return mBaseModel.LoginAccount.userID;
         }
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public string GetEditAccount()
         {          
             string href = "Admin/UserAccount/Edit/" + baseControllerInstance.GetUserID().ToString();
             return href;
         }
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public string GetDetailsAccount()
         {
             string href = "Admin/UserAccount/Details/" + baseControllerInstance.GetUserID().ToString();

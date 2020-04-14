@@ -68,6 +68,8 @@
     <Compile Include="Framework\Message.cs" />
     <Compile Include="Framework\MessageType.cs" />
     <Compile Include="Framework\Photo.cs" />
+    <Compile Include="Framework\PhotoAlbum.cs" />
+    <Compile Include="Framework\PhotoInAlbum.cs" />
     <Compile Include="Framework\Role.cs" />
     <Compile Include="Framework\sysdiagram.cs" />
     <Compile Include="Framework\UserAccount.cs" />

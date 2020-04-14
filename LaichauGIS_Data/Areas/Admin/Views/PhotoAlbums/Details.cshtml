@@ -1,0 +1,70 @@
+﻿@model Models.Framework.PhotoAlbum
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Photo Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.albumTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.albumTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.wardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wardName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.albumStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.albumStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.photoAlbumID }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

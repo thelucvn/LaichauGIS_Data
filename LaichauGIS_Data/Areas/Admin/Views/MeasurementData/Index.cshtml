@@ -16,34 +16,34 @@
             Dữ liệu đo
         </th>
         <th>
-            Tên điểm đo
+            Vị trí điểm đo
         </th>
         <th>
-           Thời điểm cập nhật
+            Thời điểm cập nhật
         </th>
         <th>
             Giá trị
         </th>
-
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataType.dataTypeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MeasurementLocation.mLocationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.updateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.mDataValue)
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.dataTypeName)
+    </td>
+    <td>
+        <a href="~/Admin/MeasurementLocation/Details/?id=@item.mLocationID">@Html.DisplayFor(modelItem => item.mLocationName)</a>
 
-        </tr>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.updateTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mDataValue)&nbsp;@Html.DisplayFor(modelItem => item.mUnit)
+    </td>
+
+</tr>
     }
 
 </table>

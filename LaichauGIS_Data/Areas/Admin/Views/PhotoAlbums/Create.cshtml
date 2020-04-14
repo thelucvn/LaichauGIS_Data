@@ -1,0 +1,69 @@
+﻿@model Models.Framework.PhotoAlbum
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm Album hình ảnh</h2>
+
+@using (Html.BeginForm("Create", "PhotoAlbums", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="form-horizontal">
+        <h4>Photo Album</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.albumTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.albumTitle, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.albumTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.wardID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("wardID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.wardID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Chọn hình ảnh đăng tải | <input type="button" value="Thêm ảnh" id="btnAdd" onclick="addFileBrowser()"/>
+
+            <div id="node-id" class="col-md-10" style="padding-top:20px">
+                   <p id="node0"><input type="file" name="ImageFiles" /></p> 
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu Album" class="btn btn-default" />
+            </div>
+           
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>
+@section Scripts
+    {
+    <script>
+
+        function addFileBrowser() {
+            
+            var node = document.getElementById('node-id');
+            var i = node.childElementCount;
+            node.innerHTML = node.innerHTML + '<p id="node'+i+'"><input type="file" name="ImageFiles" /> <input type="button" value="Xóa" onclick="removeFileBrowser('+i+')"></p>';
+        }
+        function removeFileBrowser(i) {
+            var node = document.getElementById('node-id');
+            var child = document.getElementById('node' + i);
+            node.removeChild(child);
+        }
+    </script>
+}

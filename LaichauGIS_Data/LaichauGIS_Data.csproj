@@ -142,6 +142,7 @@
     <Compile Include="Areas\Admin\Controllers\MeasurementDataController.cs" />
     <Compile Include="Areas\Admin\Controllers\MeasurementLocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\MyBaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhotoAlbumsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhotosController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAccountController.cs" />
@@ -1968,10 +1969,7 @@
     <Content Include="Areas\Admin\Views\MeasurementLocation\Details.cshtml" />
     <Content Include="Areas\Admin\Views\MeasurementLocation\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MeasurementLocation\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\MeasurementData\Create.cshtml" />
     <Content Include="Areas\Admin\Views\MeasurementData\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\MeasurementData\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\MeasurementData\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MeasurementData\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DataType\Create.cshtml" />
     <Content Include="Areas\Admin\Views\DataType\Delete.cshtml" />
@@ -1988,6 +1986,11 @@
     <Content Include="Areas\Admin\Views\Photos\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Photos\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Photos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PhotoAlbums\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PhotoAlbums\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PhotoAlbums\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PhotoAlbums\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PhotoAlbums\Index.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

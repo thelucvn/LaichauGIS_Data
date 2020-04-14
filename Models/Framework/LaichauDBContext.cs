@@ -24,7 +24,8 @@ namespace Models.Framework
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<WarningSetting> WarningSettings { get; set; }
-
+        public virtual DbSet<PhotoInAlbum> PhotoInAlbums { get; set; }
+        public virtual DbSet<Models.Framework.PhotoAlbum> PhotoAlbums { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DataType>()
@@ -32,9 +33,8 @@ namespace Models.Framework
                 .IsFixedLength();
 
             modelBuilder.Entity<DataType>()
-                .HasMany(e => e.MeasurementDatas)
-                .WithRequired(e => e.DataType)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.MeasurementDatas);
+
 
             modelBuilder.Entity<DataType>()
                 .HasMany(e => e.WarningSettings)
@@ -47,10 +47,7 @@ namespace Models.Framework
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MeasurementLocation>()
-                .HasMany(e => e.MeasurementDatas)
-                .WithRequired(e => e.MeasurementLocation)
-                .WillCascadeOnDelete(false);
-
+                .HasMany(e => e.MeasurementDatas);
 
             modelBuilder.Entity<MeasurementLocation>()
                 .HasMany(e => e.WarningSettings)
@@ -119,6 +116,12 @@ namespace Models.Framework
                 .WithRequired(e => e.Ward)
                 .HasForeignKey(e => e.wardID)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PhotoAlbum>()
+                .HasMany(e => e.PhotoInAlbums);
+                
         }
+
+       
     }
 }

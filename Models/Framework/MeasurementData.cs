@@ -11,21 +11,27 @@
     public partial class MeasurementData
     {
         [Key]
+        [Column(Order = 1)]
         public int mDataID { get; set; }
-
+        [Key]
+        [Column(Order = 2)]
         public int mLocationID { get; set; }
 
         [DisplayName("Thời điểm cập nhật")]
         public DateTime updateTime { get; set; }
-
+        [Key]
+        [Column(Order = 3)]
         public int dataTypeID { get; set; }
 
         [DisplayName("Giá trị")]
         public double mDataValue { get; set; }
        
-        public virtual DataType DataType { get; set; }
-
-        public virtual MeasurementLocation MeasurementLocation { get; set; }
+        [DisplayName("Dữ liệu đo")]
+        public string dataTypeName { get; set; }
+        [DisplayName("Vị trí điểm đo")]
+        public string mLocationName { get; set; }
+        [DisplayName("Đơn vị")]
+        public string mUnit { get; set; }
 
     }
 }
