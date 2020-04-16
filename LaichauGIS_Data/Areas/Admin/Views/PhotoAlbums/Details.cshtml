@@ -54,16 +54,40 @@
         <dd>
             @Html.DisplayFor(model => model.longitude)
         </dd>
+        <dt>Số lượng hình ảnh</dt>
+        <dd>
+            @Model.PhotoInAlbums.Count.ToString()
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.albumStatus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.albumStatus)
+            @if (Model.albumStatus == 1)
+            {
+                @:<div style="color:red">Chờ duyệt </div>
+            }
+            else if (Model.albumStatus == 2)
+            {
+                @:Không hiển thị
+            }
+            else
+            {
+                @:<div style="color:blue">Đã duyệt</div>
+            }
         </dd>
 
     </dl>
 </div>
+
+<table>
+    <tr>
+        @foreach (var item in Model.PhotoInAlbums)
+        {
+            @:<td><img src="@item.photoUrl" width="150px" height="150px"/></td>
+        }
+    </tr>
+</table>
 <p>
     @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.photoAlbumID }) |
     @Html.ActionLink("Trở về", "Index")

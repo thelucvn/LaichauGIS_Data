@@ -12,6 +12,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net.Http;
 using System.IO;
+using System.Web.UI.WebControls;
+using PagedList;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
@@ -25,12 +27,12 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         private LaichauDBContext db = new LaichauDBContext();
 
         // GET: Admin/PhotoAlbums
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 15)
         {
-            var photoAlbums = await db.Database.SqlQuery<PhotoAlbum>("exec sp_GetAllPhotoAlbum").ToListAsync();
+            var photoAlbums = db.Database.SqlQuery<PhotoAlbum>("exec sp_GetAllPhotoAlbum").ToList().OrderByDescending(x => x.photoAlbumID).ToPagedList(page, pageSize);
             foreach(PhotoAlbum photoAlbum in photoAlbums)
             {
-                var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_GetPhotoAlbum @PhotoAlbumID",new SqlParameter("@PhotoAlbumID",photoAlbum.photoAlbumID)).ToListAsync();
+                var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_AdminGetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID",photoAlbum.photoAlbumID)).ToListAsync();
                 photoAlbum.PhotoInAlbums = photos;
             }
             
@@ -45,7 +47,10 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PhotoAlbum photoAlbum = await db.Database.SqlQuery<PhotoAlbum>("exec sp_GetPhotoAlbumByID @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", id)).FirstOrDefaultAsync();
-            var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_GetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
+            var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_AdminGetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
+            string baseAddress = ConfigurationManager.AppSettings["BaseAddress_2"];
+            foreach (PhotoInAlbum photo in photos)
+                photo.photoUrl = baseAddress + photo.photoUrl;
             photoAlbum.PhotoInAlbums = photos;
             if (photoAlbum == null)
             {
@@ -155,12 +160,13 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PhotoAlbum photoAlbum = await db.Database.SqlQuery<PhotoAlbum>("exec sp_GetPhotoAlbumByID @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", id)).FirstOrDefaultAsync();
-            var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_GetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
+            var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_AdminGetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
             photoAlbum.PhotoInAlbums = photos;
             if (photoAlbum == null)
             {
                 return HttpNotFound();
             }
+
             return View(photoAlbum);
         }
 
@@ -172,10 +178,13 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         public async Task<ActionResult> Edit([Bind(Include = "photoAlbumID,albumTitle,wardID,locationID,createDate,userID,albumStatus,latitude,longitude,mLocationName,userName,wardName")] PhotoAlbum photoAlbum)
         {
             if (ModelState.IsValid)
-            {
-                db.Entry(photoAlbum).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+            { SqlParameter[] sqlParams = { new SqlParameter("@AlbumTitle", photoAlbum.albumTitle), new SqlParameter("@AlbumStatus", photoAlbum.albumStatus),
+                                            new SqlParameter("@PhotoAlbumID",photoAlbum.photoAlbumID)};
+               var res= await db.Database.SqlQuery<int>("exec sp_UpdatePhotoAlbum @AlbumTitle,@AlbumStatus,@PhotoAlbumID", sqlParams).SingleOrDefaultAsync();
+                if (res == 1)
+                {
+                    return RedirectToAction("Index");
+                }             
             }
             return View(photoAlbum);
         }
@@ -188,7 +197,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PhotoAlbum photoAlbum = await db.Database.SqlQuery<PhotoAlbum>("exec sp_GetPhotoAlbumByID @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", id)).FirstOrDefaultAsync();
-            var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_GetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
+            var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_AdminGetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
             photoAlbum.PhotoInAlbums = photos;
             if (photoAlbum == null)
             {

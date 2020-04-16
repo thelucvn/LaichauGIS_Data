@@ -1,7 +1,8 @@
 ﻿@model Models.Framework.UserAccount
 
 @{
-    Layout = null;
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -51,37 +52,37 @@
                                     <hr />
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="form-group row">
-                                       
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            @Html.TextBoxFor(model => model.userName, new { @class = "form-control form-control-user",placeholder="Họ và tên" })
+                                            @Html.TextBoxFor(model => model.userName, new { @class = "form-control form-control-user", placeholder = "Họ và tên" })
                                             @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                       
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            @Html.TextBoxFor(model => model.loginName, new { @class = "form-control form-control-user",placeholder="Tên đăng nhập" })
+                                            @Html.TextBoxFor(model => model.loginName, new { @class = "form-control form-control-user", placeholder = "Tên đăng nhập" })
                                             @Html.ValidationMessageFor(model => model.loginName, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                            
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            @Html.TextBoxFor(model => model.loginPassword, new { @class = "form-control form-control-user",placeholder="Mật khẩu"  })
+                                            @Html.TextBoxFor(model => model.loginPassword, new { @class = "form-control form-control-user", placeholder = "Mật khẩu" })
                                             @Html.ValidationMessageFor(model => model.loginPassword, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                       
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            @Html.TextBoxFor(model => model.phoneNumber, new { @class = "form-control form-control-user" ,placeholder="Số điện thoại" })
+                                            @Html.TextBoxFor(model => model.phoneNumber, new { @class = "form-control form-control-user", placeholder = "Số điện thoại" })
                                             @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                          
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            @Html.TextBoxFor(model => model.emailAddress, new { @class = "form-control form-control-user",placeholder="Địa chỉ Email" })
+                                            @Html.TextBoxFor(model => model.emailAddress, new { @class = "form-control form-control-user", placeholder = "Địa chỉ Email" })
                                             @Html.ValidationMessageFor(model => model.emailAddress, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -98,7 +99,7 @@
                                 <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
                             </div>
                             <div class="text-center">
-                                <span class="small">@Html.ActionLink("Đã có tài khoản? Đăng nhập!","Index","Login")</span>
+                                <span class="small">@Html.ActionLink("Đã có tài khoản? Đăng nhập!", "Index", "Login")</span>
                             </div>
                         </div>
                     </div>

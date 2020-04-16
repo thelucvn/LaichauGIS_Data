@@ -64,7 +64,18 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.albumStatus)
+            @if (Model.albumStatus == 1)
+            {
+                @:<div style="color:red">Chờ duyệt </div>
+            }
+            else if (Model.albumStatus == 2)
+            {
+                @:Không hiển thị
+            }
+            else
+            {
+                @:<div style="color:blue">Đã duyệt</div>
+            }
         </dd>
 
     </dl>

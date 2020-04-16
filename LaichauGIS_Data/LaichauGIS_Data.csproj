@@ -159,6 +159,7 @@
   <ItemGroup>
     <Content Include="Assets\admin\css\sb-admin-2.css" />
     <Content Include="Assets\admin\css\sb-admin-2.min.css" />
+    <Content Include="Assets\admin\img\login-icon.png" />
     <Content Include="Assets\admin\img\undraw_posting_photo.svg" />
     <Content Include="Assets\admin\js\demo\chart-area-demo.js" />
     <Content Include="Assets\admin\js\demo\chart-bar-demo.js" />
@@ -1769,6 +1770,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Photos\login_icon.png" />
     <Content Include="Photos\user1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
