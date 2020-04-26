@@ -6,7 +6,8 @@ namespace LaichauGIS_Data.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Index","Admin");
+            //return RedirectToAction("Index","Admin");
+            return View();
         }
 
         public ActionResult About()

@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "Dữ liệu điểm đo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.Phone.cshtml";
+}
+<link href="~/Assets/admin/vendor/Chartjs/Chart.css" rel="stylesheet" />
+<script src="~/Assets/admin/vendor/chartjs/Chart.js"></script>
+@using (Html.BeginForm("Index", "MyCharts", FormMethod.Post,new { id="mForm"}))
+{
+    <div class="ui-field-contain">
+        @Html.DropDownList("mLocationID", null, htmlAttributes: new { name = "mLocationID", id = "mLocationID", onchange = "getMData()" })
+    </div>
+}
+
+<div>
+    <canvas id="tempChart" style="height: 600px; width: 100%;"></canvas>
+</div>
+<div>
+    <canvas id="airHumidityChart" style="height: 600px; width: 100%;"></canvas>
+</div>
+<div>
+    <canvas id="soilHumidityChart" style="height: 600px; width: 100%;"></canvas>
+</div>
+
+<div>
+    <canvas id="rainyChart" style="height: 600px; width: 100%;"></canvas>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        function getMData() {
+            var select = document.getElementById('mLocationID');
+            var mLocationID = select.value;
+            document.getElementById('mForm').submit();
+        }
+        function tempChart() {
+      var result = @Html.Raw(ViewBag.TemperatureData);
+            var dataPointsX = [];
+        var dataPointsY = [];
+
+        for (var i = (result.length-1); i >=0 ; i--) {
+            strDate = result[i].x;
+            var d = new Date(strDate.replace('T', ' '));
+            xLabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+            dataPointsX.push(xLabel);
+            dataPointsY.push(result[i].y);
+        }
+        var ctx = document.getElementById('tempChart').getContext('2d');
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: dataPointsX,
+        datasets: [{
+            label: 'Nhiệt độ (‎°C)',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataPointsY
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        scales: {
+            xAxes: [{
+                display: true,
+            }],
+            yAxes: [{
+                display:true,
+                ticks: {
+                    beginAtZero:true,
+                    min: 0,
+                    max: 40,
+                    stepSize:10
+                }
+            }]
+        }
+    }
+});
+        }
+               function airHumidityChart() {
+      var result = @Html.Raw(ViewBag.AirHumidityData);
+            var dataPointsX = [];
+        var dataPointsY = [];
+
+        for (var i = (result.length-1); i >=0 ; i--) {
+            strDate = result[i].x;
+            var d = new Date(strDate.replace('T', ' '));
+            xLabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+            dataPointsX.push(xLabel);
+            dataPointsY.push(result[i].y);
+        }
+        var ctx = document.getElementById('airHumidityChart').getContext('2d');
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: dataPointsX,
+        datasets: [{
+            label: 'Độ ẩm không khí (%)',
+            backgroundColor: 'rgb(255, 255, 100)',
+            borderColor: 'rgb(255, 255, 100)',
+            data: dataPointsY
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        scales: {
+            xAxes: [{
+                display: true,
+            }],
+            yAxes: [{
+                display:true,
+                ticks: {
+                    beginAtZero:true,
+                    min: 0,
+                    max: 100,
+                    stepSize:20
+                }
+            }]
+        }
+    }
+});
+        }
+
+               function soilHumidityChart() {
+      var result = @Html.Raw(ViewBag.SoilHumidityData);
+            var dataPointsX = [];
+        var dataPointsY = [];
+
+        for (var i = (result.length-1); i >=0 ; i--) {
+            strDate = result[i].x;
+            var d = new Date(strDate.replace('T', ' '));
+            xLabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+            dataPointsX.push(xLabel);
+            dataPointsY.push(result[i].y);
+        }
+        var ctx = document.getElementById('soilHumidityChart').getContext('2d');
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: dataPointsX,
+        datasets: [{
+            label: 'Độ ẩm đất (%)',
+            backgroundColor: 'rgb(255, 150, 50)',
+            borderColor: 'rgb(255, 150, 50)',
+            data: dataPointsY
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        scales: {
+            xAxes: [{
+                display: true,
+            }],
+            yAxes: [{
+                display:true,
+                ticks: {
+                    beginAtZero:true,
+                    min: 0,
+                    max: 100,
+                    stepSize:20
+                }
+            }]
+        }
+    }
+});
+        }
+                      function rainyChart() {
+      var result = @Html.Raw(ViewBag.RainyData);
+            var dataPointsX = [];
+        var dataPointsY = [];
+
+        for (var i = (result.length-1); i >=0 ; i--) {
+            strDate = result[i].x;
+            var d = new Date(strDate.replace('T', ' '));
+            xLabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+            dataPointsX.push(xLabel);
+            dataPointsY.push(result[i].y);
+        }
+        var ctx = document.getElementById('rainyChart').getContext('2d');
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: dataPointsX,
+        datasets: [{
+            label: 'Lượng mưa (mm)',
+            backgroundColor: 'rgb(130, 130, 130)',
+            borderColor: 'rgb(130, 130, 130)',
+            data: dataPointsY
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        scales: {
+            xAxes: [{
+                display: true,
+            }],
+            yAxes: [{
+                display:true,
+                ticks: {
+                    beginAtZero:true,
+                    min: 0,
+                    max: 500,
+                    stepSize:100
+                }
+            }]
+        }
+    }
+});
+        }
+        function renderChart() {
+            var id = @Html.Raw(ViewBag.Id);
+            document.getElementById('mLocationID').value = id;
+
+            tempChart();
+            airHumidityChart();
+            soilHumidityChart();
+            rainyChart();
+        }
+        window.onload = renderChart();
+
+
+    </script>
+}
+
