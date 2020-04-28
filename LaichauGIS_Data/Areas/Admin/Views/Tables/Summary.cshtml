@@ -1,0 +1,77 @@
+﻿@model IEnumerable<LaichauGIS_Data.Areas.Admin.Models.DataSummary>
+@{
+    ViewBag.Title = "Summary";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thống kê</h2>
+@{ var k = 0;}
+@foreach (var item in Model)
+{
+    switch (k)
+    {
+        case 0:
+            {@:<div class="row"><div class="col-sm-8" style="font-weight:bold;">Thống kê Nhiệt độ (°C)</div></div>
+                <hr />
+                <div class="row" style="font-weight:bold;text-align:center;">
+                    <div class="col-sm-2" style="text-align:left;padding-left:40px;">Điểm đo</div>
+                    <div class="col-sm-2">Giá trị mới nhất</div>
+                    <div class="col-sm-2">Nhiệt độ trung bình theo tuần</div>
+                    <div class="col-sm-2">Nhiệt độ trung bình theo tháng</div>
+                </div>
+
+                break;
+            }
+        case 5:
+            {@:<hr /><div class="row"><div class="col-sm-8" style="font-weight:bold;">Thống kê Độ ẩm không khí (%)</div></div>
+                <hr />
+                <div class="row" style="font-weight:bold;text-align:center;">
+                    <div class="col-sm-2" style="text-align:left;padding-left:40px;">Điểm đo</div>
+                    <div class="col-sm-2">Giá trị mới nhất</div>
+                    <div class="col-sm-2">Độ ẩm trung bình theo tuần</div>
+                    <div class="col-sm-2">Độ ẩm trung bình theo tháng</div>
+                </div>
+                break;
+            }
+        case 10:
+            {@:<hr /><div class="row"><div class="col-sm-8" style="font-weight:bold;">Thống kê Độ ẩm đất (%)</div></div>
+                <hr />
+                <div class="row" style="font-weight:bold;text-align:center;">
+                    <div class="col-sm-2" style="text-align:left;padding-left:40px;">Điểm đo</div>
+                    <div class="col-sm-2">Giá trị mới nhất</div>
+                    <div class="col-sm-2">Độ ẩm trung bình theo tuần</div>
+                    <div class="col-sm-2">Độ ẩm trung bình theo tháng</div>
+                </div>
+                break;
+            }
+        case 15:
+            {@:<hr /><div class="row"><div class="col-sm-8" style="font-weight:bold;">Thống kê Lượng mưa (mm)</div></div>
+                <hr />
+                <div class="row" style="font-weight:bold;text-align:center;">
+                    <div class="col-sm-2" style="text-align:left;padding-left:40px;">Điểm đo</div>
+                    <div class="col-sm-2">Giá trị mới nhất</div>
+                    <div class="col-sm-2">Lượng mưa trung bình theo tuần</div>
+                    <div class="col-sm-2">Lượng mưa trung bình theo tháng</div>
+                </div>
+                break;
+            }
+    }
+    var avgW = String.Format("{0:0.00}", item.averageInWeek);
+    var avgM = String.Format("{0:0.00}", item.averageInMonth);
+    <div class="row" style="text-align:center;">
+        <div class="col-sm-2" style="text-align:left;padding-left:40px;">
+            @Html.DisplayFor(modelItem => item.mLocationName)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.lastMeasuredData)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => avgW)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => avgM)
+        </div>
+    </div>
+    k++;
+}
+

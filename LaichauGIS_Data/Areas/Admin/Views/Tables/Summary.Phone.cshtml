@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LaichauGIS_Data.Areas.Admin.Models.DataSummary>
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<table data-role="table" id="my-table" data-mode="columntoggle:none" class="ui-responsive table-stroke">
+    <thead>
+        <tr>
+            <th colspan="4">Thống kê Nhiệt độ (°C)</th>
+        </tr>
+        <tr>
+            <th>Tên điểm đo</th>
+            <th><abbr title="Giá trị đo mới nhất">Giá trị mới nhất</abbr></th>
+            <th><abbr title="Trung bình theo tuần">TB Theo tuần</abbr></th>
+            <th><abbr title="Trung bình theo tháng">TB Theo tháng</abbr></th>
+        </tr>
+    </thead>
+    @{ var k = 0;}
+    @foreach (var item in Model)
+    {
+
+        var avgW = String.Format("{0:0.00}", item.averageInWeek);
+        var avgM = String.Format("{0:0.00}", item.averageInMonth);
+
+<tbody>
+    @if (k == 5)
+    {
+        @:<tr><th colspan="4">Thống kê Độ ẩm đất (%)</th></tr>
+    }
+    @if (k == 10)
+    {
+        @:<tr><th colspan="4">Thống kê Độ ẩm không khí(%)</th></tr>
+    }
+    @if (k == 15)
+    {
+        @:<tr><th colspan="4">Thống kê Lượng mưa (mm)</th></tr>
+    }
+    <tr>
+        <th>@Html.DisplayFor(modelItem => item.mLocationName)</th>
+        <td>@Html.DisplayFor(modelItem => item.lastMeasuredData)</td>
+        <td>@Html.DisplayFor(modelItem => avgW)</td>
+        <td>@Html.DisplayFor(modelItem => avgM)</td>
+    </tr>
+</tbody>
+        k++;
+                    }
+</table>
