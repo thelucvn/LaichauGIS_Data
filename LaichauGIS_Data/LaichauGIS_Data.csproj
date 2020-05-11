@@ -56,6 +56,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -157,6 +158,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="hum92223_laichaudbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hum92223_laichaudbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="hum92223_laichaudbDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hum92223_laichaudbDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2295,6 +2306,28 @@
     <Content Include="Assets\admin\vendor\Chartjs\LICENSE.md" />
     <Content Include="Areas\Admin\Views\Tables\Summary.cshtml" />
     <Content Include="Areas\Admin\Views\Tables\Summary.Phone.cshtml" />
+    <Content Include="hum92223_laichaudbDataSet.xsc">
+      <DependentUpon>hum92223_laichaudbDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="hum92223_laichaudbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>hum92223_laichaudbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="hum92223_laichaudbDataSet.xss">
+      <DependentUpon>hum92223_laichaudbDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="hum92223_laichaudbDataSet1.xsc">
+      <DependentUpon>hum92223_laichaudbDataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="hum92223_laichaudbDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="hum92223_laichaudbDataSet1.xss">
+      <DependentUpon>hum92223_laichaudbDataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\humgct0106.xyz - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
@@ -2354,6 +2387,9 @@
       <Project>{5de91983-fe36-49f1-9067-8d4ddc7af062}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\ReportSummaryDataMeasure.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

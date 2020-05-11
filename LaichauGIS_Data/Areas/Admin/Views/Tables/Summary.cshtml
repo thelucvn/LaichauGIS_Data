@@ -5,6 +5,18 @@
 }
 
 <h2>Thống kê</h2>
+<div>
+    <a href="@Url.Action("Report",new {id="PDF" })">Xuất Báo cáo định dạng PDF</a>
+</div>
+<div>
+    <a href="@Url.Action("Report",new {id="Excel" })">Xuất Báo cáo định dạng Excel</a>
+</div>
+<div>
+    <a href="@Url.Action("Report",new {id="Word" })">Xuất Báo cáo định dạng Word</a>
+</div>
+<div>
+    <a href="@Url.Action("Report",new {id="Image" })">Xuất Báo cáo định dạng Image</a>
+</div>
 @{ var k = 0;}
 @foreach (var item in Model)
 {
