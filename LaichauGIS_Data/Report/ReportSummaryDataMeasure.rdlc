@@ -1420,7 +1420,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Thống kê dữ liệu đo Lượng Mưa (Đơn vị: mm)</Value>
+                <Value>Thống kê dữ liệu đo Lượng mưa (Đơn vị: mm)</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontWeight>Bold</FontWeight>
@@ -1514,10 +1514,12 @@
         <BackgroundColor>CornflowerBlue</BackgroundColor>
       </Style>
     </PageFooter>
+    <PageHeight>11.69in</PageHeight>
+    <PageWidth>8.27in</PageWidth>
     <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.5in</TopMargin>
+    <BottomMargin>0.5in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

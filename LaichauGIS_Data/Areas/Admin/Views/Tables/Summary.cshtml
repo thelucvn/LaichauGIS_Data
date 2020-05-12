@@ -6,17 +6,18 @@
 
 <h2>Thống kê</h2>
 <div>
-    <a href="@Url.Action("Report",new {id="PDF" })">Xuất Báo cáo định dạng PDF</a>
+    <img src="~/Photos/pdficon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="PDF" })">Xuất Báo cáo định dạng PDF</a>
 </div>
 <div>
-    <a href="@Url.Action("Report",new {id="Excel" })">Xuất Báo cáo định dạng Excel</a>
+    <img src="~/Photos/excelicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Excel" })">Xuất Báo cáo định dạng Excel</a>
 </div>
 <div>
-    <a href="@Url.Action("Report",new {id="Word" })">Xuất Báo cáo định dạng Word</a>
+    <img src="~/Photos/docicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Word" })">Xuất Báo cáo định dạng Word</a>
 </div>
 <div>
-    <a href="@Url.Action("Report",new {id="Image" })">Xuất Báo cáo định dạng Image</a>
+    <img src="~/Photos/imgicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Image" })">Xuất Báo cáo định dạng Image</a>
 </div>
+<br />
 @{ var k = 0;}
 @foreach (var item in Model)
 {

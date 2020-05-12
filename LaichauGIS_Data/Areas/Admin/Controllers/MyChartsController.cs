@@ -7,6 +7,8 @@ using Models.Framework;
 using Newtonsoft.Json;
 using LaichauGIS_Data.Areas.Admin.Models;
 using System.Data.SqlClient;
+using Microsoft.Reporting.WebForms;
+using System.IO;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
@@ -18,18 +20,19 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 		public MyChartsController()
 		{
 			MyBaseController.GetMyBaseController();
+			
 		}
         // GET: Admin/MyCharts
 		[HttpGet]
         public ActionResult Index(int? id)
         {
-            _context = new LaichauDBContext();
+			_context = new LaichauDBContext();
 			if (id == null)
 				id = 1;
-			var tempData = _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id,1)).ToList();
-			var airHumiData= _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 2)).ToList();
-			var soilHumiData = _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 3)).ToList();
-			var rainyData = _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 4)).ToList();
+			var tempData = getTemperatureData(id);
+			var airHumiData = getAirHumidityData(id);
+			var soilHumiData = getSoilHumidityData(id);
+			var rainyData = getRainyData(id);
 			var mLocations = _context.Database.SqlQuery<MeasurementLocation>("exec sp_MeasurementLocation_GetData").ToList();
 			try
 			{
@@ -51,6 +54,30 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 			}
 
         }
+		List<MyChartModel> getTemperatureData(int? id)
+		{
+			_context = new LaichauDBContext();
+			var res=_context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 1)).ToList();
+			return res;
+		}
+		List<MyChartModel> getAirHumidityData(int? id)
+		{
+			_context = new LaichauDBContext();
+			var res = _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 2)).ToList();
+			return res;
+		}
+		List<MyChartModel> getSoilHumidityData(int? id)
+		{
+			_context = new LaichauDBContext();
+			var res = _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 3)).ToList();
+			return res;
+		}
+		List<MyChartModel> getRainyData(int? id)
+		{
+			_context = new LaichauDBContext();
+			var res= _context.Database.SqlQuery<MyChartModel>("exec sp_GetRecentDataChart @DataTypeID,@LocationID", GetSqlParameters(id, 4)).ToList();
+			return res;
+		}
 		public SqlParameter[] GetSqlParameters(int? locationID,int dataTypeID)
 		{
 			SqlParameter[] sqlParams = {new SqlParameter("@DataTypeID",dataTypeID),
@@ -62,6 +89,60 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 		{
 			int localId = int.Parse(collection[0]);
 			return RedirectToAction("Index",new { id =localId});
+		}
+		public ActionResult Report(string id)
+		{
+			LocalReport lr = new LocalReport();
+			string path = Path.Combine(Server.MapPath("~/Report"), "ReportChartDataMeasure.rdlc");
+			if (System.IO.File.Exists(path))
+			{
+				lr.ReportPath = path;
+			}
+			else
+			{
+				return View();
+			}
+			List<MyChartModel> nhietdo = getTemperatureData(1);
+			List<MyChartModel> doamkk = getAirHumidityData(2);
+			List<MyChartModel> doamdat = getSoilHumidityData(3);
+			List<MyChartModel> luongmua = getRainyData(4);
+			ReportDataSource rdNhietDo = new ReportDataSource("Nhietdo", nhietdo);
+			ReportDataSource rdDoamkk = new ReportDataSource("Doamkk", doamkk);
+			ReportDataSource rdDoamdat= new ReportDataSource("Doamdat", doamdat);
+			ReportDataSource rdLuongmua = new ReportDataSource("Luongmua", luongmua);
+			lr.DataSources.Add(rdNhietDo);
+			lr.DataSources.Add(rdDoamkk);
+			lr.DataSources.Add(rdDoamdat);
+			lr.DataSources.Add(rdLuongmua);
+
+			string reportType = id;
+			string mimeType;
+			string encoding;
+			string fileNameExtension;
+			string deviceInfo =
+				"<DeviceInfo>" +
+				"<OutputFormat>" + id + "</OutputFormat>" +
+				"<PageWidth>11in</PageWidth>" +
+				"<PageHeight>8.5in</PageHeight>" +
+				"<MarginTop>0.5in</MarginTop>" +
+				"<MarginLeft>1in</MarginLeft>" +
+				"<MarginRight>1in</MarginRight>" +
+				"<MarginBottom>0.5in</MarginBottom>" +
+				"</DeviceInfo>";
+			Warning[] warnings;
+			string[] streams;
+			byte[] renderedBytes;
+
+			renderedBytes = lr.Render(
+				reportType,
+				deviceInfo,
+				out mimeType,
+				out encoding,
+				out fileNameExtension,
+				out streams,
+				out warnings
+				);
+			return File(renderedBytes, mimeType);
 		}
     }
 }

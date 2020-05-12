@@ -5,6 +5,13 @@
 }
 
 <h2>Dữ liệu đo</h2>
+<div>
+    <img src="~/Photos/pdficon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="PDF" })">Xuất báo cáo định dạng PDF</a>
+</div>
+<div>
+    <img src="~/Photos/docicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Word" })">Xuất báo cáo định dạng Word</a>
+</div>
+<br />
 <div class="col-sm-3">
     @using (Html.BeginForm("Index", "MyCharts", FormMethod.Post, new { id = "mForm" }))
     {
