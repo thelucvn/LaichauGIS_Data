@@ -17,6 +17,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
     {
         LaichauDBContext _context;
         JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+		int? currentLocationID;
 		public MyChartsController()
 		{
 			MyBaseController.GetMyBaseController();
@@ -29,6 +30,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 			_context = new LaichauDBContext();
 			if (id == null)
 				id = 1;
+			currentLocationID = id;
 			var tempData = getTemperatureData(id);
 			var airHumiData = getAirHumidityData(id);
 			var soilHumiData = getSoilHumidityData(id);
@@ -90,8 +92,19 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 			int localId = int.Parse(collection[0]);
 			return RedirectToAction("Index",new { id =localId});
 		}
+		public MeasurementLocation getCurrentLocation(int? locationID)
+		{
+			_context = new LaichauDBContext();
+			var res = _context.Database.SqlQuery<MeasurementLocation>("exec sp_getMeasurementLocationByID @MLocationID", new SqlParameter("@MLocationID", locationID)).FirstOrDefault();
+			return res;
+		}
 		public ActionResult Report(string id)
 		{
+			currentLocationID = int.Parse(Request.QueryString["loc"]);
+			if (currentLocationID == null)
+				currentLocationID = 1;		
+			MeasurementLocation mLocation= getCurrentLocation(currentLocationID);
+
 			LocalReport lr = new LocalReport();
 			string path = Path.Combine(Server.MapPath("~/Report"), "ReportChartDataMeasure.rdlc");
 			if (System.IO.File.Exists(path))
@@ -106,14 +119,18 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 			List<MyChartModel> doamkk = getAirHumidityData(2);
 			List<MyChartModel> doamdat = getSoilHumidityData(3);
 			List<MyChartModel> luongmua = getRainyData(4);
+			List<MeasurementLocation> measurementLocations = new List<MeasurementLocation>();
+			measurementLocations.Add(mLocation);
 			ReportDataSource rdNhietDo = new ReportDataSource("Nhietdo", nhietdo);
 			ReportDataSource rdDoamkk = new ReportDataSource("Doamkk", doamkk);
 			ReportDataSource rdDoamdat= new ReportDataSource("Doamdat", doamdat);
 			ReportDataSource rdLuongmua = new ReportDataSource("Luongmua", luongmua);
+			ReportDataSource rdMLocation = new ReportDataSource("MLocation", measurementLocations);
 			lr.DataSources.Add(rdNhietDo);
 			lr.DataSources.Add(rdDoamkk);
 			lr.DataSources.Add(rdDoamdat);
 			lr.DataSources.Add(rdLuongmua);
+			lr.DataSources.Add(rdMLocation);
 
 			string reportType = id;
 			string mimeType;
