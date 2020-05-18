@@ -59,8 +59,9 @@
             var dataPointsY = [];
 for (var i = (result.length-1); i >=0; i--){
         strDate = result[i].x;
-        var d = new Date(strDate.replace('T', ' '));
-                var xlabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+    var d = new Date(strDate.replace('T', ' '));
+    var strMonth = d.getMonth() + 1;
+    var xlabel = d.getDate() + '/' + strMonth + ' ' + d.getHours() + ':' + d.getMinutes();
         dataPointsX.push(xlabel);
         dataPointsY.push(result[i].y);
             }
@@ -166,8 +167,9 @@ for (var i = (result.length-1); i >=0; i--){
             var dataPointsY = [];
 for (var i = (result.length-1); i >=0; i--){
         strDate = result[i].x;
-        var d = new Date(strDate.replace('T', ' '));
-                var xlabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+    var d = new Date(strDate.replace('T', ' '));
+    var strMonth = d.getMonth() + 1;
+                var xlabel = d.getDate() + '/' + strMonth + ' ' + d.getHours() + ':' + d.getMinutes();
         dataPointsX.push(xlabel);
         dataPointsY.push(result[i].y);
             }
@@ -273,8 +275,9 @@ for (var i = (result.length-1); i >=0; i--){
             var dataPointsY = [];
 for (var i = (result.length-1); i >=0; i--){
         strDate = result[i].x;
-                var d = new Date(strDate.replace('T', ' '));
-                var xlabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+    var d = new Date(strDate.replace('T', ' '));
+    var strMonth = d.getMonth() + 1;
+    var xlabel = d.getDate() + '/' + strMonth + ' ' + d.getHours() + ':' + d.getMinutes();
         dataPointsX.push(xlabel);
         dataPointsY.push(result[i].y);
             }
@@ -381,8 +384,9 @@ for (var i = (result.length-1); i >=0; i--){
             var dataPointsY = [];
 for (var i = (result.length-1); i >=0; i--){
         strDate = result[i].x;
-        var d = new Date(strDate.replace('T', ' '));
-                var xlabel = d.getDate() + '/' + d.getMonth() + ' ' + d.getHours() + ':' + d.getMinutes();
+    var d = new Date(strDate.replace('T', ' '));
+    var strMonth = d.getMonth() + 1;
+                var xlabel = d.getDate() + '/' + strMonth + ' ' + d.getHours() + ':' + d.getMinutes();
         dataPointsX.push(xlabel);
         dataPointsY.push(result[i].y);
             }
