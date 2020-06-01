@@ -34,7 +34,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             mContext = new LaichauDBContext();
             var locations = mContext.Database.SqlQuery<MeasurementLocation>("exec sp_MeasurementLocation_GetData").ToList();
             List<DataSummary> dataSummaryList = new List<DataSummary>();
-            int k = 0;
+
             foreach (MeasurementLocation mLocation in locations)
             {
                 var sumaryData = mContext.Database.SqlQuery<DataSummary>("exec sp_GetDataSummary @MLocationID,@DataTypeID", GetSqlParameters(mLocation.mLocationID, 1)).FirstOrDefault();
