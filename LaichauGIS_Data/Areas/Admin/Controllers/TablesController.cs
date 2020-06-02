@@ -133,8 +133,6 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 out warnings
                 );
             return File(renderedBytes, mimeType);
-
-
         }
     }
 }

@@ -23,26 +23,39 @@
         var avgW = String.Format("{0:0.00}", item.averageInWeek);
         var avgM = String.Format("{0:0.00}", item.averageInMonth);
 
-<tbody>
-    @if (k == 5)
-    {
-        @:<tr><th colspan="4">Thống kê Độ ẩm đất (%)</th></tr>
-    }
-    @if (k == 10)
-    {
-        @:<tr><th colspan="4">Thống kê Độ ẩm không khí(%)</th></tr>
-    }
-    @if (k == 15)
-    {
-        @:<tr><th colspan="4">Thống kê Lượng mưa (mm)</th></tr>
-    }
-    <tr>
-        <th>@Html.DisplayFor(modelItem => item.mLocationName)</th>
-        <td>@Html.DisplayFor(modelItem => item.lastMeasuredData)</td>
-        <td>@Html.DisplayFor(modelItem => avgW)</td>
-        <td>@Html.DisplayFor(modelItem => avgM)</td>
-    </tr>
-</tbody>
+        <tbody>
+            @if (k == 5)
+            {
+                @:<tr><th colspan="4">Thống kê Độ ẩm đất (%)</th></tr>
+            }
+            @if (k == 10)
+            {
+                @:<tr><th colspan="4">Thống kê Độ ẩm không khí(%)</th></tr>
+            }
+            @if (k == 15)
+            {
+                @:<tr><th colspan="4">Thống kê Lượng mưa (mm)</th></tr>
+            }
+            <tr>
+                <th>@Html.DisplayFor(modelItem => item.mLocationName)</th>
+                <td>@Html.DisplayFor(modelItem => item.lastMeasuredData)</td>
+                <td>@Html.DisplayFor(modelItem => avgW)</td>
+                <td>@Html.DisplayFor(modelItem => avgM)</td>
+            </tr>
+        </tbody>
         k++;
-                    }
+    }
 </table>
+<br />
+<div>
+    <img src="~/Photos/pdficon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="PDF" })">Xuất Báo cáo định dạng PDF</a>
+</div>
+<div>
+    <img src="~/Photos/excelicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Excel" })">Xuất Báo cáo định dạng Excel</a>
+</div>
+<div>
+    <img src="~/Photos/docicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Word" })">Xuất Báo cáo định dạng Word</a>
+</div>
+<div>
+    <img src="~/Photos/imgicon.png" height="25px" width="25px" /> <a href="@Url.Action("Report",new {id="Image" })">Xuất Báo cáo định dạng Image</a>
+</div>
