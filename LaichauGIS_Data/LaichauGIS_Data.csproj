@@ -2115,6 +2115,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Photos\docicon.png" />
     <Content Include="Photos\excelicon.png" />
+    <Content Include="Photos\icons8-cloud-storage-80.png" />
+    <Content Include="Photos\icons8-database-administrator-80.png" />
+    <Content Include="Photos\icons8-exchange-80.png" />
+    <Content Include="Photos\icons8-gallery-80.png" />
+    <Content Include="Photos\icons8-home-80.png" />
+    <Content Include="Photos\icons8-map-marker-80.png" />
+    <Content Include="Photos\icons8-user-account-80.png" />
     <Content Include="Photos\imgicon.png" />
     <Content Include="Photos\login_icon.png" />
     <Content Include="Photos\pdficon.png" />
@@ -2351,6 +2358,7 @@
     <Content Include="hum92223_laichaudbDataSet1.xsc">
       <DependentUpon>hum92223_laichaudbDataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\AdminHome\home.cshtml" />
     <None Include="hum92223_laichaudbDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>

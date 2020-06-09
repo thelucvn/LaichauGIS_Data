@@ -26,5 +26,16 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             MyBaseController.GetMyBaseController().setBaseModel(baseModel);
             return View();
         }
+        // GET: Admin/AdminHome
+        public async Task<ActionResult> home()
+        {
+            context = new LaichauDBContext();
+            string loginName = Request.Cookies["user"].Value;
+            var loginAccount = await context.Database.SqlQuery<UserAccount>("exec sp_GetUserAccount_ByLoginName @LoginName", new SqlParameter("@LoginName", loginName)).FirstOrDefaultAsync();
+            baseModel = new MyBaseModel();
+            baseModel.LoginAccount = loginAccount;
+            MyBaseController.GetMyBaseController().setBaseModel(baseModel);
+            return View();
+        }
     }
 }
