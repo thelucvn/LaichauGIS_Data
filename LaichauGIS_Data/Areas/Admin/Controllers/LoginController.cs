@@ -25,7 +25,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 //SessionHelper.SetSession(new UserSession() { LoginName = model.LoginName });
                 FormsAuthentication.SetAuthCookie(model.LoginName, model.RememberMe);
                 Response.Cookies.Add(new System.Web.HttpCookie("user", model.LoginName));
-                return RedirectToAction("home", "AdminHome");
+                return RedirectToAction("Index", "AdminHome");
             }
             else
             {
