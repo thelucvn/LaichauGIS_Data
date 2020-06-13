@@ -2359,6 +2359,7 @@
       <DependentUpon>hum92223_laichaudbDataSet1.xsd</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\ResetPassword.cshtml" />
     <None Include="hum92223_laichaudbDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>
