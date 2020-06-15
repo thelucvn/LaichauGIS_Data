@@ -60,6 +60,16 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             var res = context.Database.SqlQuery<ChartMultiDataModel>("exec sp_GetLastMDataByType @DataTypeID", new SqlParameter("@DataTypeID",dataTypeID)).ToList();
             return res;
         }
+        [HttpGet]
+        public ActionResult NotFoundPage()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult BlankPage()
+        {
+            return View();
+        }
 
     }
 }

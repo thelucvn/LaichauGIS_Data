@@ -186,8 +186,10 @@
     <Compile Include="Areas\Admin\Models\ChartMultiDataModel.cs" />
     <Compile Include="Areas\Admin\Models\DataSummary.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\LoginPasswordUpdateModel.cs" />
     <Compile Include="Areas\Admin\Models\MyBaseModel.cs" />
     <Compile Include="Areas\Admin\Models\MyChartModel.cs" />
+    <Compile Include="Areas\Admin\Models\ResetPasswordModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2360,6 +2362,9 @@
     </Content>
     <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\UpdatePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\NotFoundPage.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\BlankPage.cshtml" />
     <None Include="hum92223_laichaudbDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>

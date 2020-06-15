@@ -122,6 +122,6 @@ namespace Models.Framework
                 
         }
 
-       
+      //  public System.Data.Entity.DbSet<LaichauGIS_Data.Areas.Admin.Models.LoginPasswordUpdateModel> LoginPasswordUpdateModels { get; set; }
     }
 }

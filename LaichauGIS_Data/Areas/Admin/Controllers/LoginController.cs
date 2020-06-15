@@ -53,21 +53,25 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         //Post: Admin/Login/ResetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(string emailAddress)
+        public async Task<ActionResult> ResetPassword(ResetPasswordModel model)
         {
+            string emailAddress = model.emailAddress;
             if (emailAddress == "")
             {
                 ModelState.AddModelError("", "Địa chỉ email không hợp lệ!");
-                return View();
             }
             if (ModelState.IsValid)
             {
                 LaichauDBContext context = new LaichauDBContext();
-                int res=await context.Database.SqlQuery<int>("select count(*) from UserAccount where emailAddress=@EmailAddress", new SqlParameter("@EmailAddress", emailAddress)).CountAsync();
+                int res= await context.Database.SqlQuery<int>("select count(*) from UserAccount where emailAddress=@EmailAddress", new SqlParameter("@EmailAddress", emailAddress)).SingleOrDefaultAsync();
                 if (res > 0)
                 {
                    var resetPassword= await sendEmailResetPassword(emailAddress);
                     return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Địa chỉ email không hợp lệ!");
                 }
             }
             return View();
@@ -106,6 +110,33 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 }
             }
             return false;
+
+        }
+        [HttpGet]
+        public ActionResult UpdatePassword()
+        {
+            LoginPasswordUpdateModel loginPasswordUpdateModel = new LoginPasswordUpdateModel();
+            loginPasswordUpdateModel.userID = MyBaseController.baseControllerInstance.GetUserID();
+            return View(loginPasswordUpdateModel);
+        }
+        [HttpPost]
+        public async Task<ActionResult> UpdatePassword(LoginPasswordUpdateModel model)
+        {
+
+                LaichauDBContext context = new LaichauDBContext();
+                var currentPassword = await context.Database.SqlQuery<string>("select loginPassword from UserAccount where userID=@UserID", new SqlParameter("@UserID", model.userID)).SingleOrDefaultAsync();
+
+            if (!(model.newPassword == model.retypePassword && model.oldPassword==currentPassword.Trim()))
+            {
+                ModelState.AddModelError("", "Mật khẩu không đúng!");
+            }
+            if (ModelState.IsValid)
+            {
+                SqlParameter[] sqlParams = { new SqlParameter("@LoginPassword", model.newPassword), new SqlParameter("@UserID", model.userID) };
+                var res = context.Database.ExecuteSqlCommand("update UserAccount set loginPassword=@LoginPassword where userID=@UserID", sqlParams);
+                return RedirectToAction("Index", "AdminHome");
+            }
+            return View(model);
 
         }
 
