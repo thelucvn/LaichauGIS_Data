@@ -7,7 +7,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Trang Chủ</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tạo báo cáo</a>
+    <a href="~/Admin/Tables/Summary" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tạo báo cáo</a>
 </div>
 
 <!-- Content Row -->
@@ -106,6 +106,8 @@
         // Set new default font family and font color to mimic Bootstrap's default styling
         Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
         Chart.defaults.global.defaultFontColor = '#858796';
+        var labelList =@Html.Raw(ViewBag.MLocation);
+
         function temperatureChart() {
             var result = @Html.Raw(ViewBag.TemperatureData);
             var dataPointsX = [];
@@ -135,32 +137,32 @@ for (var i = (result.length-1); i >=0; i--){
             data: {
                 labels: dataPointsX,
                 datasets: [{
-                    label: "Trạm đo 1 ",
+                    label: labelList[0],
                     backgroundColor: "rgb(255,255,255)",
                     borderColor: '#f5ad42',
                     data: dataPointsY1,
                     fill: false,
                 },
-                {
-                    label: "Trạm đo 2 ",
+                    {
+                    label: labelList[1],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#424bf5',
                     data: dataPointsY2,
                     fill:false,
                 },{
-                    label: "Trạm đo 3 ",
+                    label: labelList[2],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#dc23f2',
                     data: dataPointsY3,
                     fill:false,
                 },{
-                    label: "Trạm đo 4 ",
+                    label: labelList[3],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#a21c12',
                     data: dataPointsY4,
                     fill:false,
                 },{
-                    label: "Trạm đo 5 ",
+                    label: labelList[4],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#42f545',
                     data: dataPointsY5,
@@ -232,7 +234,7 @@ for (var i = (result.length-1); i >=0; i--){
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + tooltipItem.yLabel+'°C';
+                            return datasetLabel +': '+ tooltipItem.yLabel+'°C';
                         }
                     }
                 }
@@ -268,32 +270,32 @@ for (var i = (result.length-1); i >=0; i--){
             data: {
                 labels: dataPointsX,
                 datasets: [{
-                    label: "Trạm đo 1 ",
+                    label: labelList[0],
                     backgroundColor: "rgb(255,255,255)",
                     borderColor: '#f5ad42',
                     data: dataPointsY1,
                     fill: false,
                 },
                 {
-                    label: "Trạm đo 2 ",
+                    label: labelList[1],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#424bf5',
                     data: dataPointsY2,
                     fill:false,
                 },{
-                    label: "Trạm đo 3 ",
+                    label: labelList[2],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#dc23f2',
                     data: dataPointsY3,
                     fill:false,
                 },{
-                    label: "Trạm đo 4 ",
+                    label: labelList[3],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#a21c12',
                     data: dataPointsY4,
                     fill:false,
                 },{
-                    label: "Trạm đo 5 ",
+                    label: labelList[4],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#42f545',
                     data: dataPointsY5,
@@ -365,7 +367,7 @@ for (var i = (result.length-1); i >=0; i--){
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + tooltipItem.yLabel+'%';
+                            return datasetLabel +': '+ tooltipItem.yLabel+'%';
                         }
                     }
                 }
@@ -401,32 +403,32 @@ for (var i = (result.length-1); i >=0; i--){
             data: {
                 labels: dataPointsX,
                 datasets: [{
-                    label: "Trạm đo 1 ",
+                    label: labelList[0],
                     backgroundColor: "rgb(255,255,255)",
                     borderColor: '#f5ad42',
                     data: dataPointsY1,
                     fill: false,
                 },
                 {
-                    label: "Trạm đo 2 ",
+                    label: labelList[1],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#424bf5',
                     data: dataPointsY2,
                     fill:false,
                 },{
-                    label: "Trạm đo 3 ",
+                    label: labelList[2],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#dc23f2',
                     data: dataPointsY3,
                     fill:false,
                 },{
-                    label: "Trạm đo 4 ",
+                    label: labelList[3],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#a21c12',
                     data: dataPointsY4,
                     fill:false,
                 },{
-                    label: "Trạm đo 5 ",
+                    label: labelList[4],
                     backgroundColor: "rgb(255,255,255)",
 					borderColor: '#42f545',
                     data: dataPointsY5,
@@ -499,7 +501,7 @@ for (var i = (result.length-1); i >=0; i--){
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + tooltipItem.yLabel+'%';
+                            return datasetLabel +': '+ tooltipItem.yLabel+'%';
                         }
                     }
                 }
@@ -535,32 +537,32 @@ for (var i = (result.length-1); i >=0; i--){
             data: {
                 labels: dataPointsX,
                 datasets: [{
-                    label: "Trạm đo 1 ",
+                    label: labelList[0],
                     backgroundColor: '#f5ad42',
                     borderColor: '#f5ad42',
                     data: dataPointsY1,
                     fill: false,
                 },
                 {
-                    label: "Trạm đo 2 ",
+                    label: labelList[1],
                     backgroundColor: '#424bf5',
 					borderColor: '#424bf5',
                     data: dataPointsY2,
                     fill:false,
                 },{
-                    label: "Trạm đo 3 ",
+                    label: labelList[2],
                     backgroundColor: '#dc23f2',
 					borderColor: '#dc23f2',
                     data: dataPointsY3,
                     fill:false,
                 },{
-                    label: "Trạm đo 4 ",
+                    label: labelList[3],
                     backgroundColor: '#a21c12',
 					borderColor: '#a21c12',
                     data: dataPointsY4,
                     fill:false,
                 },{
-                    label: "Trạm đo 5 ",
+                    label: labelList[4],
                     backgroundColor: '#42f545',
 					borderColor: '#42f545',
                     data: dataPointsY5,
@@ -632,7 +634,7 @@ for (var i = (result.length-1); i >=0; i--){
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + tooltipItem.yLabel;
+                            return datasetLabel +': '+ tooltipItem.yLabel+' mm';
                         }
                     }
                 }

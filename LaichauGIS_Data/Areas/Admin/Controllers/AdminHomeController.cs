@@ -35,6 +35,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             var airHumiData = getLastMDataByType(2);
             var soilHumiData = getLastMDataByType(3);
             var rainyData = getLastMDataByType(4);
+            var locationList = context.Database.SqlQuery<string>("select mLocationName from MeasurementLocation").ToList();
 
             try
             {
@@ -42,6 +43,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
                 ViewBag.AirHumidityData = JsonConvert.SerializeObject(airHumiData, _jsonSetting);
                 ViewBag.SoilHumidityData = JsonConvert.SerializeObject(soilHumiData, _jsonSetting);
                 ViewBag.RainyData = JsonConvert.SerializeObject(rainyData, _jsonSetting);
+                ViewBag.MLocation = JsonConvert.SerializeObject(locationList, _jsonSetting);
                 return View();
             }
             catch (System.Data.Entity.Core.EntityException)
