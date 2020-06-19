@@ -9,16 +9,19 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-
-    <div data-role="page" data-theme="a">
+    <div data-role="page" data-theme="a" data-add-back-btn="true">
         <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>@ViewBag.Title</h1>
+            <a href="~/Admin/AdminHome/Index" data-icon="home">Trang chủ</a>
+            <h4>@ViewBag.Title</h4>
+            <a href="" data-icon="back" data-rel="back" data-theme="b">Quay lại</a>
         </div>
         <div data-role="content" data-theme="a">
             @RenderBody()
         </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="javascript:(window.open('https://humgct0106.xyz/Admin/AdminHome/Index', '_self')).close();" data-icon="delete" data-role="button" data-theme="b">Thoát</a>
+        </div>
     </div>
-
     @RenderSection("scripts", required: false)
 </body>
 </html>

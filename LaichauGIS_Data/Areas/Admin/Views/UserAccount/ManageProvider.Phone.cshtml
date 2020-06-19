@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Models.Framework.UserAccount>
+
+@{
+    ViewBag.Title = "Suppliers";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.Phone.cshtml";
+}
+
+<h2>Danh sách nhà cung cấp</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table data-role="table" id="my-table" data-mode="columntoggle:none" class="ui-responsive table-stroke">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.userName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.loginName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.loginName)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.userID }) |
+                    @Html.ActionLink("Xem", "Details", new { id = item.userID })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

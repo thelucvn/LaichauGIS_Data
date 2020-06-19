@@ -2366,6 +2366,8 @@
     <Content Include="Areas\Admin\Views\Login\UpdatePassword.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\NotFoundPage.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\BlankPage.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAccount\ManageProvider.Phone.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAccount\Index.Phone.cshtml" />
     <None Include="hum92223_laichaudbDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>
