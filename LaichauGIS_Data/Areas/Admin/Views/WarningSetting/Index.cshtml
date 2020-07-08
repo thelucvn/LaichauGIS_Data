@@ -8,7 +8,14 @@
 <h2>Danh sách thiết lập cảnh báo</h2>
 
 <p>
-    @Html.ActionLink("Thêm thiết lập", "Create")
+    <div class="row">
+        <div class="col-2">
+            @Html.ActionLink("Thêm thiết lập", "Create")
+        </div>
+        <div class="col-2">
+            @Html.ActionLink("Quản lý thông báo","Index","Messages")
+        </div>
+    </div>
 </p>
 <table class="table">
     <tr>

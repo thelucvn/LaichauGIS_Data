@@ -173,6 +173,8 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MeasurementDataController.cs" />
     <Compile Include="Areas\Admin\Controllers\MeasurementLocationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MessagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MessageTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MyBaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\MyChartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhotoAlbumsController.cs" />
@@ -2368,6 +2370,16 @@
     <Content Include="Areas\Admin\Views\AdminHome\BlankPage.cshtml" />
     <Content Include="Areas\Admin\Views\UserAccount\ManageProvider.Phone.cshtml" />
     <Content Include="Areas\Admin\Views\UserAccount\Index.Phone.cshtml" />
+    <Content Include="Areas\Admin\Views\Messages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Messages\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Messages\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Messages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Messages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MessageTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MessageTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MessageTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MessageTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MessageTypes\Index.cshtml" />
     <None Include="hum92223_laichaudbDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>

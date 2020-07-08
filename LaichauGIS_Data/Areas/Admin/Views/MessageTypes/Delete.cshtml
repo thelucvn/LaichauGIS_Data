@@ -1,0 +1,40 @@
+﻿@model Models.Framework.MessageType
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc chắn muốn xóa loại thông báo?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.messageTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messageTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeDescription)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

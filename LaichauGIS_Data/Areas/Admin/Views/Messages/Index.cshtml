@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Models.Framework.Message>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý thông báo</h2>
+
+<p>
+    <div class="row">
+        <div class="col-2">
+            @Html.ActionLink("Thêm thông báo", "Create")
+        </div>
+        <div class="col-2">
+            @Html.ActionLink("Phân loại thông báo","Index","MessageTypes")
+        </div>
+    </div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.messageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.messageContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.messageStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.messageTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.messageContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.messageStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.messageID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.messageID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.messageID })
+        </td>
+    </tr>
+}
+
+</table>

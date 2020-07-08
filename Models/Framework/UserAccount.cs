@@ -16,7 +16,6 @@
         {
             MeasurementLocations = new HashSet<MeasurementLocation>();
             Messages = new HashSet<Message>();
-            Messages1 = new HashSet<Message>();
             Photos = new HashSet<Photo>();
             WarningSettings = new HashSet<WarningSetting>();
         }
@@ -87,9 +86,6 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> Messages1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Photo> Photos { get; set; }

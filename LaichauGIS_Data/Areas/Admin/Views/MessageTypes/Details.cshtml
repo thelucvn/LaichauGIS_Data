@@ -1,0 +1,35 @@
+﻿@model Models.Framework.MessageType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Phân loại thông báo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.messageTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messageTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.messageTypeID }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

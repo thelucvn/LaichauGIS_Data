@@ -1,0 +1,67 @@
+﻿@model Models.Framework.Message
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageType.messageTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageType.messageTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccount.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccount1.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount1.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messageTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messageTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messageContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messageContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messageStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messageStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.messageID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
