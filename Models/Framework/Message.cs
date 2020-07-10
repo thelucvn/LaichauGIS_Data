@@ -10,11 +10,12 @@
     [Table("Message")]
     public partial class Message
     {
+        [Key]
         public int messageID { get; set; }
 
         public int senderID { get; set; }
 
-        public int reiceiverID { get; set; }
+        public Nullable<int> reiceiverID { get; set; }
 
         public int messageTypeID { get; set; }
 

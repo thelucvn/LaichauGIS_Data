@@ -40,12 +40,22 @@
             @Html.DisplayFor(modelItem => item.messageContent)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.messageStatus)
+            @if (item.messageStatus == 2 || item.messageStatus==3 )
+            {
+                @:<div style="color:red;">Chưa gửi</div>
+            }else
+            {
+                @:<div style="color:blue;">Đã gửi</div>
+            }
         </td>
         <td>
-            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.messageID }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.messageID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.messageID })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.messageID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.messageID }) |
+            @if (!(item.messageStatus == 4))
+            {
+                @Html.ActionLink("Gửi thông báo", "Send", new { id = item.messageID })@:|
+            }
+            @Html.ActionLink("Xóa", "Delete", new { id = item.messageID })
         </td>
     </tr>
 }

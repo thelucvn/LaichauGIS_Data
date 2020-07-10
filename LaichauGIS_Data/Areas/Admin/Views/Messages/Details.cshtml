@@ -5,10 +5,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết thông báo</h2>
 
 <div>
-    <h4>Message</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,19 +19,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserAccount.userName)
+           Người tạo thông báo
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UserAccount.userName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserAccount1.userName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserAccount1.userName)
         </dd>
 
         <dt>
@@ -56,12 +47,23 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.messageStatus)
+            @if (Model.messageStatus == 2 || Model.messageStatus == 3)
+            {
+                @:<div style="color:red;">Chưa gửi</div>
+            }
+            else
+            {
+                @:<div style="color:blue;">Đã gửi</div>
+            }
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.messageID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.messageID }) |
+    @if (!(Model.messageStatus == 4))
+    {
+        @Html.ActionLink("Gửi thông báo", "Send", new { id = Model.messageID }) @:|
+    }
+    @Html.ActionLink("Trở về", "Index")
 </p>
