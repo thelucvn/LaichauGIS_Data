@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Models.Framework;
+using System.Configuration;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
@@ -38,6 +39,15 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            if (message.reiceiverID == null)
+            {
+                ViewBag.receiver = "Tất cả người dùng";
+            }
+            else
+            {
+                var ward = await db.Wards.FindAsync(message.reiceiverID);
+                ViewBag.receiver = ward.wardName;
+            }
             return View(message);
         }
         //GET: Admin/Messages/Send/5
@@ -60,18 +70,24 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         public void sendMessage(Message message)
         {
             //Send message to firebase
+            var messageFirebase=db.Database.SqlQuery<MessageFirebase>("exec sp_getMessageFirebase").ToList();
+            string messageTitle = message.messageTitle;
+            string messageBody = message.messageContent;
+            List<string> receiver = new List<string>();
+            foreach(MessageFirebase mess in messageFirebase)
+            {
+                receiver.Add(mess.userToken);
+            }
+            string serviceApi = ConfigurationManager.AppSettings["BaseAddress_2"];
+            string messageServiceUrl = serviceApi + "/api/MessageFirebase";
+
         }
         // GET: Admin/Messages/Create
         public ActionResult Create()
         {
             ViewBag.messageTypeID = new SelectList(db.MessageTypes, "messageTypeID", "messageTypeName");
             ViewBag.senderID = new SelectList(db.UserAccounts, "userID", "userName");
-            Ward ward = new Ward();
-            ward.wardID = 0;
-            ward.wardName = "Broadcast(Send to All)";
-            List<Ward> wards = new List<Ward>();
-            wards.Add(ward);
-            wards.AddRange(db.Wards);
+            List<Ward> wards = getSelectWardList();
             ViewBag.reiceiverID = new SelectList(wards, "wardID", "wardName");
             return View();
         }
@@ -100,16 +116,20 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
 
             ViewBag.messageTypeID = new SelectList(db.MessageTypes, "messageTypeID", "messageTypeName", message.messageTypeID);
             ViewBag.senderID = new SelectList(db.UserAccounts, "userID", "userName", message.senderID);
+            List<Ward> wards = getSelectWardList();
+            ViewBag.reiceiverID = new SelectList(wards, "wardID", "wardName", message.reiceiverID);
+            return View(message);
+        }
+        List<Ward> getSelectWardList()
+        {
             Ward ward = new Ward();
             ward.wardID = 0;
             ward.wardName = "Broadcast(Send to All)";
             List<Ward> wards = new List<Ward>();
             wards.Add(ward);
             wards.AddRange(db.Wards);
-            ViewBag.reiceiverID = new SelectList(wards, "wardID", "wardName", message.reiceiverID);
-            return View(message);
+            return wards;
         }
-
         // GET: Admin/Messages/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -124,7 +144,8 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             }
             ViewBag.messageTypeID = new SelectList(db.MessageTypes, "messageTypeID", "messageTypeName", message.messageTypeID);
             ViewBag.senderID = new SelectList(db.UserAccounts, "userID", "userName", message.senderID);
-            ViewBag.reiceiverID = new SelectList(db.Wards, "wardID", "wardName", message.reiceiverID);
+            List<Ward> wards = getSelectWardList();
+            ViewBag.reiceiverID = new SelectList(wards, "wardID", "wardName", message.reiceiverID);
             return View(message);
         }
 
@@ -137,13 +158,18 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (message.reiceiverID == 0)
+                {
+                    message.reiceiverID = null;
+                }
                 db.Entry(message).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.messageTypeID = new SelectList(db.MessageTypes, "messageTypeID", "messageTypeName", message.messageTypeID);
             ViewBag.senderID = new SelectList(db.UserAccounts, "userID", "userName", message.senderID);
-            ViewBag.reiceiverID = new SelectList(db.Wards, "wardID", "wardName", message.reiceiverID);
+            List<Ward> wards = getSelectWardList();
+            ViewBag.reiceiverID = new SelectList(wards, "wardID", "wardName", message.reiceiverID);
             return View(message);
         }
 
@@ -158,6 +184,15 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             if (message == null)
             {
                 return HttpNotFound();
+            }
+            if (message.reiceiverID == null)
+            {
+                ViewBag.receiver = "Tất cả người dùng";
+            }
+            else
+            {
+                var ward = await db.Wards.FindAsync(message.reiceiverID);
+                ViewBag.receiver = ward.wardName;
             }
             return View(message);
         }

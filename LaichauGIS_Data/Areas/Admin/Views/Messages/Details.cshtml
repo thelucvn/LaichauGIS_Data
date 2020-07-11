@@ -19,13 +19,19 @@
         </dd>
 
         <dt>
-           Người tạo thông báo
+            Người tạo thông báo
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UserAccount.userName)
         </dd>
+        <dt>
+            Nơi nhận thông báo
+        </dt>
 
+        <dd>
+            @ViewBag.receiver
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.messageTitle)
         </dt>

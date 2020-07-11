@@ -12,11 +12,13 @@
     {
         [Key]
         public int messageID { get; set; }
-
+        [DisplayName("Người tạo thông báo")]
         public int senderID { get; set; }
 
+        [DisplayName("Nơi nhận thông báo")]
         public Nullable<int> reiceiverID { get; set; }
 
+        [DisplayName("Loại thông báo")]
         public int messageTypeID { get; set; }
 
         [Required]

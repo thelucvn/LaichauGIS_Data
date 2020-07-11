@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
@@ -17,19 +18,27 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
         public AdminHomeController()
         {
-            
+            MyBaseController.GetMyBaseController();
         }
 
         // GET: Admin/AdminHome
         public async Task<ActionResult> Index()
         {
             context = new LaichauDBContext();
-            string loginName = Request.Cookies["user"].Value;
-            var loginAccount = await context.Database.SqlQuery<UserAccount>("exec sp_GetUserAccount_ByLoginName @LoginName", new SqlParameter("@LoginName", loginName)).FirstOrDefaultAsync();
-            baseModel = new MyBaseModel();
-            baseModel.LoginAccount = loginAccount;
-            MyBaseController.GetMyBaseController().setBaseModel(baseModel);
-
+            HttpCookie userCookie = Request.Cookies["user"];
+            if (userCookie != null)
+            {
+                string loginName = userCookie.Value;
+                var loginAccount = await context.Database.SqlQuery<UserAccount>("exec sp_GetUserAccount_ByLoginName @LoginName", new SqlParameter("@LoginName", loginName)).FirstOrDefaultAsync();
+                baseModel = new MyBaseModel();
+                baseModel.LoginAccount = loginAccount;
+                MyBaseController.GetMyBaseController().setBaseModel(baseModel);
+            }
+            else
+            {
+                RedirectToAction("Index", "Login");
+            }
+           
             context = new LaichauDBContext();
             var tempData = getLastMDataByType(1);
             var airHumiData = getLastMDataByType(2);

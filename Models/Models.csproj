@@ -66,6 +66,7 @@
     <Compile Include="Framework\MeasurementData.cs" />
     <Compile Include="Framework\MeasurementLocation.cs" />
     <Compile Include="Framework\Message.cs" />
+    <Compile Include="Framework\MessageFirebase.cs" />
     <Compile Include="Framework\MessageType.cs" />
     <Compile Include="Framework\Photo.cs" />
     <Compile Include="Framework\PhotoAlbum.cs" />
