@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using Models.Framework;
 using System.Configuration;
+using System.Net.Http;
+using System.IO;
+using System.Web.Script.Serialization;
 
 namespace LaichauGIS_Data.Areas.Admin.Controllers
 {
@@ -71,16 +74,37 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         {
             //Send message to firebase
             var messageFirebase=db.Database.SqlQuery<MessageFirebase>("exec sp_getMessageFirebase").ToList();
-            string messageTitle = message.messageTitle;
-            string messageBody = message.messageContent;
+
             List<string> receiver = new List<string>();
             foreach(MessageFirebase mess in messageFirebase)
             {
                 receiver.Add(mess.userToken);
             }
             string serviceApi = ConfigurationManager.AppSettings["BaseAddress_2"];
-            string messageServiceUrl = serviceApi + "/api/MessageFirebase";
+            string messageServiceUrl = serviceApi + @"/api/FirebaseMessage";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(messageServiceUrl);
+            httpWebRequest.ContentType = "application/json; charset=utf-8";
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Accept= "application/json; charset=utf-8";
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string jsonDataRequest = new JavaScriptSerializer().Serialize(new
+                {
+                    messageTitle = message.messageTitle,
+                    messageBody = message.messageContent,
+                    listReceiverToken = receiver
+                }) ;
 
+                streamWriter.Write(jsonDataRequest);
+                streamWriter.Flush();
+                streamWriter.Close();
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                }
+            }
         }
         // GET: Admin/Messages/Create
         public ActionResult Create()
