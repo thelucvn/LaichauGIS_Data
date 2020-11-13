@@ -50,7 +50,11 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
             var photos = await db.Database.SqlQuery<PhotoInAlbum>("exec sp_AdminGetPhotoAlbum @PhotoAlbumID", new SqlParameter("@PhotoAlbumID", photoAlbum.photoAlbumID)).ToListAsync();
             string baseAddress = ConfigurationManager.AppSettings["BaseAddress_2"];
             foreach (PhotoInAlbum photo in photos)
+            {
                 photo.photoUrl = baseAddress + photo.photoUrl;
+                photo.photoUrl = photo.photoUrl.Replace("\\", @"\\");
+            }
+                
             photoAlbum.PhotoInAlbums = photos;
             if (photoAlbum == null)
             {
