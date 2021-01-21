@@ -1,0 +1,77 @@
+﻿@model LaichauGIS_Data.Areas.Admin.Models.MineWorkData
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+    <body>
+        <div class="col-12">
+            <div class="row" style="font-family:'Times New Roman', Times, serif">
+                <div class="col-12">
+                    <h2 style="text-align: center;">HỆ THỐNG GIÁM SÁT CHẤN ĐỘNG NỔ MÌN ONLINE</h2>
+                </div>
+            </div>
+            <div class="row" style="text-align:center;font-family:'Times New Roman', Times, serif;font-size:larger">
+                <div class="col-8 align-content-center">
+                    Thống kê dữ liệu
+                    <table class="table" style="width:80%;" align="center">
+                        <tr>
+                            <td></td>
+                            <td>Tran</td>
+                            <td>Vert</td>
+                            <td>Long</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;padding-left:20px;font-weight:bold">Vận tốc dao động đỉnh (mm/s)</td>
+                            <td>@Html.DisplayFor(model => model.veloTranMax)</td>
+                            <td>@Html.DisplayFor(model => model.veloVertMax)</td>
+                            <td>@Html.DisplayFor(model => model.veloLongMax)</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;padding-left:20px;font-weight:bold">Thời điểm (s)</td>
+                            <td>@Html.DisplayFor(model => model.veloTranMaxTime)</td>
+                            <td>@Html.DisplayFor(model => model.veloVertMaxTime)</td>
+                            <td>@Html.DisplayFor(model => model.veloLongMaxTime)</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;padding-left:20px;font-weight:bold">Biên độ dao động lớn nhất</td>
+                            <td>@Html.DisplayFor(model => model.ampTranMax)</td>
+                            <td>@Html.DisplayFor(model => model.ampVertMax)</td>
+                            <td>@Html.DisplayFor(model => model.ampLongMax)</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;padding-left:20px;font-weight:bold">Tần số rung động chính</td>
+                            <td>@Html.DisplayFor(model => model.mainFreqTran)</td>
+                            <td>@Html.DisplayFor(model => model.mainFreqVert)</td>
+                            <td>@Html.DisplayFor(model => model.mainFreqLong)</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;padding-left:20px;font-weight:bold">Vector rung động tổng</td>
+                            <td colspan="3" style="font-weight:bold">@Html.DisplayFor(model=>model.sumData)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-4" style="text-align:left;vertical-align:middle;padding-top:10px"><img src="~/Photos/nomin.jpg" width="400" height="300" /></div>
+            </div>
+            <hr />
+            <div class="row" style="text-align:center;font-family:'Times New Roman', Times, serif;font-size:larger;padding:20px">
+                <div class="col-6">
+                    Đồ thị rung động
+                    <br />
+
+                </div>
+                <div class="col-6">
+                    Đồ thị miền tần số
+                    <br />
+                </div>
+
+            </div>
+            <div class="col-12" style="text-align:center;background-color:white" width="100%" height="100%">
+                <img src="~/Photos/nomin3.png" />
+            </div>
+        </div>
+  
+
+    </body>
+
+

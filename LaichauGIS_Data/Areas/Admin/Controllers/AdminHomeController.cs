@@ -74,7 +74,8 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult NotFoundPage()
         {
-            return View();
+            return RedirectToAction("Index", "MineWork");
+           // return View();
         }
         [HttpGet]
         public ActionResult BlankPage()

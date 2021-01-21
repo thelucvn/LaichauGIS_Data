@@ -175,6 +175,7 @@
     <Compile Include="Areas\Admin\Controllers\MeasurementLocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MineWorkController.cs" />
     <Compile Include="Areas\Admin\Controllers\MyBaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\MyChartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhotoAlbumsController.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Areas\Admin\Models\DataSummary.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginPasswordUpdateModel.cs" />
+    <Compile Include="Areas\Admin\Models\MineWorkData.cs" />
     <Compile Include="Areas\Admin\Models\MyBaseModel.cs" />
     <Compile Include="Areas\Admin\Models\MyChartModel.cs" />
     <Compile Include="Areas\Admin\Models\ResetPasswordModel.cs" />
@@ -2121,6 +2123,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Photos\docicon.png" />
     <Content Include="Photos\excelicon.png" />
+    <Content Include="Photos\f-L.png" />
+    <Content Include="Photos\f-T.png" />
+    <Content Include="Photos\f-V.png" />
     <Content Include="Photos\icons8-cloud-storage-80.png" />
     <Content Include="Photos\icons8-database-administrator-80.png" />
     <Content Include="Photos\icons8-exchange-80.png" />
@@ -2129,9 +2134,16 @@
     <Content Include="Photos\icons8-map-marker-80.png" />
     <Content Include="Photos\icons8-user-account-80.png" />
     <Content Include="Photos\imgicon.png" />
+    <Content Include="Photos\L.png" />
     <Content Include="Photos\login_icon.png" />
+    <Content Include="Photos\nomin.jpg" />
+    <Content Include="Photos\nomin1.png" />
+    <Content Include="Photos\nomin2.png" />
+    <Content Include="Photos\nomin3.png" />
     <Content Include="Photos\pdficon.png" />
+    <Content Include="Photos\T.png" />
     <Content Include="Photos\user1.png" />
+    <Content Include="Photos\V.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -2380,6 +2392,7 @@
     <Content Include="Areas\Admin\Views\MessageTypes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\MessageTypes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MessageTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MineWork\Index.cshtml" />
     <None Include="hum92223_laichaudbDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>hum92223_laichaudbDataSet1.Designer.cs</LastGenOutput>
