@@ -54,6 +54,9 @@
             @if (!(item.messageStatus == 4))
             {
                 @Html.ActionLink("Gửi thông báo", "Send", new { id = item.messageID })@:|
+            }else if(!(item.messageStatus==1))
+            {
+                @Html.ActionLink("Gửi lại","Send",new { id=item.messageID})@:|
             }
             @Html.ActionLink("Xóa", "Delete", new { id = item.messageID })
         </td>

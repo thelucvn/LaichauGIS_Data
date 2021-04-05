@@ -26,7 +26,7 @@ namespace LaichauGIS_Data.Areas.Admin.Controllers
         // GET: Admin/Messages
         public async Task<ActionResult> Index()
         {
-            var messages = db.Messages.Include(m => m.MessageType).Include(m => m.UserAccount);
+            var messages = db.Messages.Include(m => m.MessageType).Include(m => m.UserAccount).OrderByDescending(m=>m.messageID);
             return View(await messages.ToListAsync());
         }
 
